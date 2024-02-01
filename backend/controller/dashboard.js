@@ -52,7 +52,8 @@ const addProduct = async(req,res)=>{
 
 
 //  delete product
-const deleteProduct = async (req,res)=>{
+
+const deleteProduct =async (req,res)=>{
     try {
         const code= req.params.kodeProduct
         const product = await knex.table('product').where({ kodeProduct: code}).first()
@@ -60,10 +61,9 @@ const deleteProduct = async (req,res)=>{
             return res.status(404).send("Product not found");
         }
         await knex.table('product').where({kodeProduct: code}).del()
-        res.json("berhasil delete barang")
+        res.json("berhasil menghapus product")
     } catch (err) {
-        console.log(err);
-        res.status(500).json("An error occurred while adding the product.");
+        
     }
 }
 
