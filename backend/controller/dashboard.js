@@ -52,7 +52,7 @@ const addProduct = async(req,res)=>{
 
 
 //  delete product
-const deleteProduct =async (req,res)=>{
+const deleteProduct = async (req,res)=>{
     try {
         const code= req.params.kodeProduct
         const product = await knex.table('product').where({ kodeProduct: code}).first()
