@@ -16,8 +16,7 @@ app.use(methodOverride("_method"));
 app.use(cookieParser())
 app.use(express.static("public"));
 
-app.use(usersRoute)
-app.use(dashboardRoute)
+app.use('/api/users',usersRoute)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
