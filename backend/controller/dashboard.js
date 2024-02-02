@@ -41,7 +41,7 @@ const addProduct = async(req,res)=>{
             picture3: req.body.picture3,
             picture4: req.body.picture4,
             desctription: req.body.desctription
-        });
+        });                                                                                         
         
         res.json("berhasil input data");
     } catch (err) {
