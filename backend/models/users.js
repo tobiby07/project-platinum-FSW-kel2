@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     createdBy: DataTypes.STRING,
     modifiedBy: DataTypes.STRING
   }, {
+    tableName: 'Users',
     sequelize,
     modelName: 'Users',
   });
