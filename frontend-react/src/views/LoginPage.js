@@ -1,52 +1,73 @@
-import {Link} from 'react-router-dom'
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-function LoginPage(){
-    return(
-        <>
-        <form>
-  <div className="mb-3">
-    <label htmlFor="exampleInputEmail1" className="form-label">
-      Email address
-    </label>
-    <input
-      type="email"
-      className="form-control"
-      id="exampleInputEmail1"
-      aria-describedby="emailHelp"
-    />
-    <div id="emailHelp" className="form-text">
-      We'll never share your email with anyone else.
-    </div>
-  </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">
-      Password
-    </label>
-    <input
-      type="password"
-      className="form-control"
-      id="exampleInputPassword1"
-    />
-  </div>
-  <div className="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-    <label className="form-check-label" htmlFor="exampleCheck1">
-      Check me out
-    </label>
-  </div>
-  <button type="submit" className="btn btn-primary">
-    Submit
-  </button>
-    <button><a href="/home">Next</a></button>
-    <Link to={'/home'}>
-        <button>
-            next2
-        </button>
-    </Link>
-</form>
+function LoginPage() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const history = useNavigate(); // Memanggil useNavigate sebagai hook
+    const [error, setError] = useState('');
 
-        </>
-    )
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3001/auth', {
+                email,
+                password
+            });
+            const { data } = response;
+            if (data && data.token) {
+                // Assuming the token is returned from the API upon successful login
+                const token = data.token;
+                // Store the token in local storage or cookies
+                localStorage.setItem('token', token);
+                // Redirect to the home page or dashboard
+                history('/home');
+            } else {
+                setError('Invalid response from server');
+            }
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.message) {
+                setError(error.response.data.message);
+            } else {
+                setError('An error occurred while processing your request');
+            }
+        }
+    };
+
+    return (
+        <div>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        aria-describedby="emailHelp"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+            <p>Don't have an account? <Link to="/register-user">Register here</Link></p>
+        </div>
+    );
 }
 
-export default LoginPage
+export default LoginPage;
