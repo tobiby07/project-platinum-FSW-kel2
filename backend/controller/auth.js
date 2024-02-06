@@ -7,25 +7,30 @@ const { jwtExpires } = require('../config/config.js')
 class Auth {
 
     static login = async (req, res) => {
-        const { email, password } = req.body
+        const { email, password } = req.body;
         if (!email || !password) {
             responseSimple(400, "email and password is required", res);
+            return;
         }
         const user = await Users.findOne({
             where: {
                 email: email
             }
-        })
+        });
+        if (!user) {
+            responseSimple(400, "User not found", res);
+            return;
+        }
         const isPasswordValid = await bcrypt.compare(password, user.password);
-
         if (!isPasswordValid) {
             responseSimple(400, "Email or password is invalid", res);
+            return;
         }
         const payload = {
             name: user.name,
             email: user.email,
-        }
-        const token = jwt.sign(payload, secret, { expiresIn: jwtExpires })
+        };
+        const token = jwt.sign(payload, secret, { expiresIn: jwtExpires });
         res.json({
             message: "Login success",
             data: {
@@ -33,8 +38,8 @@ class Auth {
                 email: user.email,
             },
             token: token
-        })
-    }
+        });
+    }    
     static logout = async (req, res) => {
         const { id } = req.params
         const data = await Auth.findByPk(id);

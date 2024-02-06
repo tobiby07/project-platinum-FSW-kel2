@@ -5,7 +5,7 @@ import axios from 'axios';
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const history = useNavigate(); // Memanggil useNavigate sebagai hook
+    const history = useNavigate(); 
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
@@ -17,11 +17,8 @@ function LoginPage() {
             });
             const { data } = response;
             if (data && data.token) {
-                // Assuming the token is returned from the API upon successful login
                 const token = data.token;
-                // Store the token in local storage or cookies
                 localStorage.setItem('token', token);
-                // Redirect to the home page or dashboard
                 history('/home');
             } else {
                 setError('Invalid response from server');
