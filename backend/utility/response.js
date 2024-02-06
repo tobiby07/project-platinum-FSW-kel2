@@ -8,6 +8,7 @@ const response = (statusCode, data, message, res) => {
     });
 }
 const responseSimple = (statusCode, message, res) => {
+    console.log("STATUSCODE", statusCode)
     res.status(statusCode).json({
         payload: {
             status_code: statusCode,

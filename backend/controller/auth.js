@@ -9,7 +9,7 @@ class Auth {
     static login = async (req, res) => {
         const { email, password } = req.body
         if (!email || !password) {
-            responseSimple(400, result, "email and password is required", res);
+            responseSimple(400, "email and password is required", res);
         }
         const user = await Users.findOne({
             where: {
@@ -19,7 +19,7 @@ class Auth {
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
-            responseSimple(400, result, "Email or password is invalid", res);
+            responseSimple(400, "Email or password is invalid", res);
         }
         const payload = {
             name: user.name,
