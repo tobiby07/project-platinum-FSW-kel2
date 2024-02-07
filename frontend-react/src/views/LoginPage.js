@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -7,6 +7,14 @@ function LoginPage() {
     const [password, setPassword] = useState('');
     const history = useNavigate(); 
     const [error, setError] = useState('');
+    
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            history('/home');
+        }
+    }, [history]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
