@@ -2,8 +2,8 @@ const { Users } = require('../models');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const UserController = {
+  // -------- ADMIN SIDE CONTROLLER ----------
   // Get all users
-
   getAllUsers: async (req, res) => {
     try {
       const users = await Users.findAll();
@@ -70,6 +70,8 @@ const UserController = {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  // --------- USER SIDE CONTROLLER ----------
 };
 
 module.exports = UserController;
