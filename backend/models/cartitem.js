@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   CartItem.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     cartId: DataTypes.INTEGER,
     productId: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER,
