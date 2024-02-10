@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      OrderItem.hasOne(models.Order, {
+        foreignKey: 'id',
+        sourceKey: 'orderId',
+      })
+      OrderItem.belongsTo(models.Product, {
+        foreignKey: 'id',
+        sourceKey: 'productId',
+      })
     }
   }
   OrderItem.init({
@@ -24,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
     price: DataTypes.INTEGER
   }, {
+    tableName: 'OrderItems',
     sequelize,
     modelName: 'OrderItem',
   });

@@ -11,6 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Order.hasOne(models.OrderItem, {
+        foreignKey: 'orderId',
+        sourceKey: 'id',
+      })
+      Order.hasOne(models.Users, {
+        foreignKey: 'userId',
+        sourceKey: 'id',
+      })
     }
   }
   Order.init({
@@ -24,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     shippingAddress: DataTypes.STRING,
     orderStatus: DataTypes.STRING
   }, {
+    tableName: 'Orders',
     sequelize,
     modelName: 'Order',
   });
