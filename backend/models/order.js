@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
         sourceKey: 'id',
       })
       Order.hasOne(models.Users, {
-        foreignKey: 'userId',
-        sourceKey: 'id',
+        foreignKey: 'id',
+        sourceKey: 'userId',
       })
     }
   }
