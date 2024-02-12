@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     categoryName: DataTypes.STRING
   }, {
+    tableName: 'ProductCategories',
     sequelize,
     modelName: 'ProductCategory',
   });
