@@ -5,9 +5,9 @@ import axios from 'axios';
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const history = useNavigate(); 
+    const history = useNavigate();
     const [error, setError] = useState('');
-    
+
 
     useEffect(() => {
         const token = localStorage.getItem('token');
