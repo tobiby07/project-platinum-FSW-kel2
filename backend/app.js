@@ -8,6 +8,10 @@ const { usersRoute } = require('./routes/users');
 const { dashboardRoute } = require('./routes/dashboard');
 var authRouter = require('./routes/auth');
 const { productRoute } = require('./routes/products');
+const { categoryRoute } = require('./routes/category');
+const { orderItemRoute } = require('./routes/orderItem');
+const { orderRoute } = require('./routes/order');
+
 app.use(express.json());
 app.use(cors({
   origin: '*',
@@ -24,6 +28,9 @@ app.get('/', (req, res) => {
 })
 app.use('/auth', authRouter);
 app.use('/products', productRoute)
+app.use('/api/categories', categoryRoute)
+app.use('/api/order-items', orderItemRoute)
+app.use('/api/order', orderRoute)
 app.listen(port, () => {
   console.log(`app running at http://localhost:${port}`)
 })

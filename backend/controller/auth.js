@@ -36,10 +36,11 @@ class Auth {
             data: {
                 name: user.name,
                 email: user.email,
+                role: user.role
             },
             token: token
         });
-    }    
+    }
     static logout = async (req, res) => {
         const { id } = req.params
         const data = await Auth.findByPk(id);

@@ -5,9 +5,9 @@ import axios from 'axios';
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const history = useNavigate(); 
+    const history = useNavigate();
     const [error, setError] = useState('');
-    
+
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -27,7 +27,19 @@ function LoginPage() {
             if (data && data.token) {
                 const token = data.token;
                 localStorage.setItem('token', token);
-                history('/home');
+    
+                if (data.data && data.data.role) {
+                    const role = data.data.role;
+                    localStorage.setItem('role', role);
+    
+                    if (role === 'admin') {
+                        history('/dashboard');
+                    } else {
+                        history('/home');
+                    }
+                } else {
+                    setError('User role not found in response data');
+                }
             } else {
                 setError('Invalid response from server');
             }
@@ -39,7 +51,6 @@ function LoginPage() {
             }
         }
     };
-
     return (
         <div>
             <h2>Login</h2>

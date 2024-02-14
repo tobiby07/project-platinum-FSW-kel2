@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 're
 import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
 import AddUser from './views/RegisterUser';
+import Dashboard from './views/Dashboard';
 
 
 
@@ -11,9 +12,13 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
+        {/* user route */}
         <Route path='/' element={<LoginPage/>}/>
-        <Route path="/home" element={<HomePage/>}/>
         <Route path="/register-user" element={<AddUser/>}/>
+        <Route path="/home" element={<HomePage/>}/>
+
+        {/* admin route */}
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
       </BrowserRouter>
     </div>
