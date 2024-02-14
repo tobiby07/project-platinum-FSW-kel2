@@ -5,7 +5,6 @@ const cors = require('cors');
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const { usersRoute } = require('./routes/users');
-const { dashboardRoute } = require('./routes/dashboard');
 var authRouter = require('./routes/auth');
 const { productRoute } = require('./routes/products');
 const { categoryRoute } = require('./routes/category');

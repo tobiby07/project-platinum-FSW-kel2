@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import InputForm from './assets/input-form';
+import Button from './assets/button';
 
 const AddUser = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [address, setAddress] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -27,6 +31,8 @@ const AddUser = () => {
       setName('');
       setEmail('');
       setPassword('');
+      setAddress('')
+      setPhoneNumber('')
       navigate("/");
     } catch (error) {
       setError(error.message);
@@ -39,44 +45,13 @@ const AddUser = () => {
       <h3 className="mb-3">DAFTAR AKUN BARU</h3>
       <div className="login-line"></div>
       <form onSubmit={createUsers}>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label font-weight-bold">Nama</label>
-          <input
-            className="form-control rounded-0 font-style-italic"
-            type='text'
-            id='name'
-            value={name}
-            onChange={e => setName(e.target.value)}
-            placeholder='Masukkan nama Anda'
-            required
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor="email" className="form-label font-weight-bold">Alamat email</label>
-          <input
-            className="form-control rounded-0 font-style-italic"
-            type='email'
-            id='email'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder='Masukkan alamat email Anda'
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label font-weight-bold">Kata sandi</label>
-          <input
-            className="form-control rounded-0 font-style-italic"
-            type='password'
-            id='password'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder='Masukkan kata sandi Anda'
-            required
-          />
-        </div>
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-        <button type='submit' className="btn rounded-0 p-2 my-3">BUAT AKUN</button>
+        <InputForm conten={"Nama"} type={"text"} id={"name"} value={name} onchange={e => setName(e.target.value)} placeholder={"Masukan Nama Anda"}/>
+        <InputForm conten={"Email"} type={"email"} id={"email"} value={email} onchange={e => setEmail(e.target.value)} placeholder={"Masukan Email Anda"}/>
+        <InputForm conten={"Password"} type={"password"} id={"password"} value={password} onchange={e => setPassword(e.target.value)} placeholder={"Masukan Password Anda"}/>
+        <InputForm conten={"Alamat"} type={"text"} id={"address"} value={address} onchange={e => setAddress(e.target.value)} placeholder={"Masukan Alamat Anda"}/>
+        <InputForm conten={"Nomor HP"} type={"number"} id={"phoneNumber"} value={phoneNumber} onchange={e => setPhoneNumber(e.target.value)} placeholder={"09876xxxxxx"}/>
+        {error && Error}
+        <Button type={"submit"} conten={"BUAT AKUN"}/>
       </form>
       <p className="text-center">Sudah memiliki akun? <Link to="/">Masuk disini</Link></p>
       </div>
