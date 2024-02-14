@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import InputForm from './assets/input-form';
 import Button from './assets/button';
+import Address from './component/address';
 
 const AddUser = () => {
   const [name, setName] = useState('');
@@ -27,6 +28,8 @@ const AddUser = () => {
         name,
         email,
         password,
+        address,
+        phoneNumber
       });
       setName('');
       setEmail('');
@@ -50,6 +53,7 @@ const AddUser = () => {
         <InputForm conten={"Password"} type={"password"} id={"password"} value={password} onchange={e => setPassword(e.target.value)} placeholder={"Masukan Password Anda"}/>
         <InputForm conten={"Alamat"} type={"text"} id={"address"} value={address} onchange={e => setAddress(e.target.value)} placeholder={"Masukan Alamat Anda"}/>
         <InputForm conten={"Nomor HP"} type={"number"} id={"phoneNumber"} value={phoneNumber} onchange={e => setPhoneNumber(e.target.value)} placeholder={"09876xxxxxx"}/>
+        <Address/>
         {error && Error}
         <Button type={"submit"} conten={"BUAT AKUN"}/>
       </form>
