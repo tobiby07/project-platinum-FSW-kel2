@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './login-register.css'
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -52,14 +53,17 @@ function LoginPage() {
         }
     };
     return (
-        <div>
-            <h2>Login</h2>
+        <div className="container p-4">
+            <h3>MASUK</h3>
+            <div className="login-line"></div>
+            <p>Jika Anda sudah memiliki akun, silahkan masuk dengan menggunakan alamat email Anda</p>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                    <label htmlFor="exampleInputEmail1" className="form-label font-weight-bold">Alamat email</label>
                     <input
+                        placeholder="Masukkan alamat email Anda"
                         type="email"
-                        className="form-control"
+                        className="form-control rounded-0 font-style-italic"
                         id="email"
                         aria-describedby="emailHelp"
                         value={email}
@@ -68,10 +72,11 @@ function LoginPage() {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                    <label htmlFor="exampleInputPassword1" className="form-label font-weight-bold">Kata sandi</label>
                     <input
+                        placeholder="Masukkan kata sandi Anda"
                         type="password"
-                        className="form-control"
+                        className="form-control rounded-0 font-style-italic"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -79,9 +84,9 @@ function LoginPage() {
                     />
                 </div>
                 {error && <div style={{ color: 'red' }}>{error}</div>}
-                <button type="submit" className="btn btn-primary">Submit</button>
+                 <button className="btn btn-primary rounded-0 my-3 p-2" type="button">MASUK</button>
+                <p className="text-center">Belum memiliki akun? <Link to="/register-user">Daftar disini</Link></p>
             </form>
-            <p>Don't have an account? <Link to="/register-user">Register here</Link></p>
         </div>
     );
 }
