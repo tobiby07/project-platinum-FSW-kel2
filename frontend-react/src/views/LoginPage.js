@@ -60,9 +60,9 @@ function LoginPage() {
             <div className="login-line"></div>
             <p>Jika Anda sudah memiliki akun, silahkan masuk dengan menggunakan alamat email Anda</p>
             <form onSubmit={handleSubmit}>
-                <InputForm conten={"Email"} value={email} type={"email"} placeholder={"masukan email anda"} id={"email"} onchange={(e) => setEmail(e.target.value)} />
-                <InputForm conten={"Password"} value={password} type={"password"} placeholder={"masukan password"} id={"password"} onchange={(e) => setPassword(e.target.value)}/>
-                {error && Error}
+                <InputForm conten={"Email"} value={email} type={"email"} placeholder={"masukan email anda"} id={"email"} onChange={(e) => setEmail(e.target.value)} />
+                <InputForm conten={"Password"} value={password} type={"password"} placeholder={"masukan password"} id={"password"} onChange={(e) => setPassword(e.target.value)}/>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
                 <Button type={"submit"} conten={"LOGIN"}/>
                 <p className="text-center">Belum memiliki akun? <Link to="/register-user">Daftar disini</Link></p>
             </form>
