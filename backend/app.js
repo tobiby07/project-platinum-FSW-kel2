@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 app.use('/auth', authRouter);
-app.use('/products', productRoute)
+app.use('/api/products', productRoute)
 app.use('/api/categories', categoryRoute)
 app.use('/api/order-items', orderItemRoute)
 app.use('/api/order', orderRoute)

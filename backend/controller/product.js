@@ -1,6 +1,6 @@
 const db = require("../models");
 const { urlPath } = require('../helpers/urlPath');
-const fs = require('fs'); 
+const fs = require('fs');
 const Product = db.Product;
 
 class ProductController {
@@ -8,7 +8,7 @@ class ProductController {
     try {
       let products
       if (!!req.query.categoryId) {
-        const categoryId = req.query.categoryId 
+        const categoryId = req.query.categoryId
         products = await Product.findAll({
           where: {
             categoryId
@@ -32,32 +32,32 @@ class ProductController {
 
   async createProduct(req, res) {
     try {
-        if (res.locals.user.role !== 'admin') {
-            return res.status(403).json({ message: 'Permission denied. Only admin can create products.' });
-        }
+      // if (res.locals.user.role !== 'admin') {
+      //   return res.status(403).json({ message: 'Permission denied. Only admin can create products.' });
+      // }
 
-        const {
-            categoryId,
-            productName,
-            productDescription,
-            price,
-            stock,
-            productImage,
-        } = req.body;
+      const {
+        categoryId,
+        productName,
+        productDescription,
+        price,
+        stock,
+        productImage,
+      } = req.body;
 
-        const newProduct = await Product.create({
-            categoryId,
-            productName,
-            productDescription,
-            price,
-            stock,
-            productImage,
-        });
+      const newProduct = await Product.create({
+        categoryId,
+        productName,
+        productDescription,
+        price,
+        stock,
+        productImage,
+      });
 
-        res.status(201).json(newProduct);
+      res.status(201).json(newProduct);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Failed to create a new product' });
+      console.error(error);
+      res.status(500).json({ message: 'Failed to create a new product' });
     }
   }
 
@@ -89,7 +89,7 @@ class ProductController {
 
   async editProduct(req, res) {
     const productId = req.params.productId;
-    const { productName, productDescription, price, stock, categoryId} = req.body;
+    const { productName, productDescription, price, stock, categoryId } = req.body;
 
     try {
       if (res.locals.user.role !== 'admin') {
@@ -122,7 +122,7 @@ class ProductController {
     const timestamp = new Date().getTime();
     try {
       let image = req.files.uploads.path
-      const productId = req.query.productId 
+      const productId = req.query.productId
       if (!productId) {
         fs.unlinkSync(image);
         return res.status(400).json({ message: 'id is missing' });
@@ -141,8 +141,8 @@ class ProductController {
       }
 
       let extension = image.split(".")[1]
-      const newName = `images/${timestamp}-${product.productName.replace(" ","-").toLowerCase()}.` + extension
-      fs.rename(image, newName, () => {}); 
+      const newName = `images/${timestamp}-${product.productName.replace(" ", "-").toLowerCase()}.` + extension
+      fs.rename(image, newName, () => { });
 
       product.productImage = newName
 
