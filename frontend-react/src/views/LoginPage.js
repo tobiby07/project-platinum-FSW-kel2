@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './login-register.css'
+import InputForm from './assets/input-form';
+import Button from './assets/button';
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -52,38 +55,20 @@ function LoginPage() {
         }
     };
     return (
-        <div>
-            <h2>Login</h2>
+        <div className="container p-4">
+            <h3>MASUK</h3>
+            <div className="login-line"></div>
+            <p>Jika Anda sudah memiliki akun, silahkan masuk dengan menggunakan alamat email Anda</p>
             <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        aria-describedby="emailHelp"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                {error && <div style={{ color: 'red' }}>{error}</div>}
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <InputForm conten={"Email"} value={email} type={"email"} placeholder={"masukan email anda"} id={"email"} onchange={(e) => setEmail(e.target.value)} />
+                <InputForm conten={"Password"} value={password} type={"password"} placeholder={"masukan password"} id={"password"} onchange={(e) => setPassword(e.target.value)}/>
+                {error && Error}
+                <Button type={"submit"} conten={"LOGIN"}/>
+                <p className="text-center">Belum memiliki akun? <Link to="/register-user">Daftar disini</Link></p>
             </form>
-            <p>Don't have an account? <Link to="/register-user">Register here</Link></p>
         </div>
     );
 }
+
 
 export default LoginPage;

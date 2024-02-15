@@ -4,6 +4,7 @@ import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
 import AddUser from './views/RegisterUser';
 import Dashboard from './views/Dashboard';
+import AddAdmin from './views/RegisterAdmin';
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home" element={<HomePage/>}/>
 
         {/* admin route */}
+        <Route path="/register-admin" element={<AddAdmin/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
       </BrowserRouter>
