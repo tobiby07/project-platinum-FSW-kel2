@@ -10,7 +10,7 @@ const SelectForm = ({ contenLabel, value, options, contenOption, onChange }) => 
       <select value={value} onChange={onChange} className="form-control rounded-0 font-style-italic">
         <option value="">{contenOption}</option>
         {options.map(option => (
-          <option key={option.id} value={option.id}>{option.name}</option>
+          <option key={option.name} value={option.id}>{option.name}</option>
         ))}
       </select>
     </div>
