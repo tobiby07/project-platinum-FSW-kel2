@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import InputForm from './assets/input-form';
 import Button from './assets/button';
 import SelectForm from './assets/select-form';
+import logo from './assets/image/logo.png'
+import register1 from './assets/image/register-pic1.png'
+import register2 from './assets/image/register-pic2.png'
+
 
 const AddUser = () => {
   const [name, setName] = useState('');
@@ -113,26 +117,61 @@ const AddUser = () => {
   };
 
   return (
-    <div className="container p-4">
-      <h3 className="mb-3">DAFTAR AKUN BARU</h3>
-      <div className="login-line"></div>
-      <form onSubmit={createUser}>
-        <InputForm conten={"Nama"} type={"text"} id={"name"} value={name} onChange={e => setName(e.target.value)} placeholder={"Masukan Nama Anda"}/>
-        <InputForm conten={"Email"} type={"email"} id={"email"} value={email} onChange={e => setEmail(e.target.value)} placeholder={"Masukan Email Anda"}/>
-        <InputForm conten={"Password"} type={"password"} id={"password"} value={password} onChange={e => setPassword(e.target.value)} placeholder={"Masukan Password Anda"}/>
-        <InputForm conten={"Nomor HP"} type={"number"} id={"phoneNumber"} value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} placeholder={"09876xxxxxx"}/>
-        <div> 
-          <label className="form-label font-weight-bold text-center">ALAMAT LENGKAP</label>
-          <SelectForm contenLabel={"PROVINSI"} contenOption={"PILIH PROVINSI"} value={selectedProvince} onChange={handleProvinceChange} options={provinces}/>
-          <SelectForm contenLabel={"KABUPATEN/KOTA"} contenOption={"PILIH KABUPATEN/KOTA"} value={selectedRegency} onChange={handleRegencyChange} options={regencies}/>
-          <SelectForm contenLabel={"KECAMATAN"} contenOption={"PILIH KECAMATAN"} value={selectedDistrict} onChange={handleDistrictChange} options={districts}/>
-          <SelectForm contenLabel={"DESA"} contenOption={"PILIH DESA"} value={selectedVillage} onChange={handleVillageChange} options={villages}/>
+
+<section className="vh-100 ">
+<div className="container py-5 h-1 ">
+  <div className="row d-flex justify-content-center align-items-center h-100">
+    <div className="col col-xl-10">
+      <div className="card" style={{ borderRadius: "1rem" }}>
+        <div className="row g-0">
+          <div className="col-md-6 col-lg-7 d-flex align-items-center">
+            <div className="card-body p-4 p-lg-5 text-black">
+              <form onSubmit={createUser}>
+                <div className="d-flex align-items-center mb-3 pb-1">
+                  <i
+                    className="fas fa-cubes fa-2x me-3"
+                    style={{ color: "#ff6219" }}
+                  />
+                  <span className="h1 fw-bold mb-0"><img  src={logo} alt="" /></span>
+                </div>
+                <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: 1 }}> Register Account</h5>
+                <InputForm conten={"Nama"} type={"text"} id={"name"} value={name} onChange={e => setName(e.target.value)} placeholder={"Masukan Nama Anda"}/>
+                <InputForm conten={"Email"} type={"email"} id={"email"} value={email} onChange={e => setEmail(e.target.value)} placeholder={"Masukan Email Anda"}/>
+                <InputForm conten={"Password"} type={"password"} id={"password"} value={password} onChange={e => setPassword(e.target.value)} placeholder={"Masukan Password Anda"}/>
+                <InputForm conten={"Nomor HP"} type={"number"} id={"phoneNumber"} value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} placeholder={"09876xxxxxx"}/>
+                <label className="form-label font-weight-bold text-center">ALAMAT LENGKAP</label>
+                <SelectForm contenLabel={"Provinsi"} contenOption={"Pilih Provinsi"} value={selectedProvince} onChange={handleProvinceChange} options={provinces}/>
+                <SelectForm contenLabel={"Kabupaten/Kota"} contenOption={"Pilih Kabupaten/Kota"} value={selectedRegency} onChange={handleRegencyChange} options={regencies}/>
+                <SelectForm contenLabel={"Kecamatan"} contenOption={"Pilih Kecamatan"} value={selectedDistrict} onChange={handleDistrictChange} options={districts}/>
+                <SelectForm contenLabel={"Desa"} contenOption={"Pilih Desa"} value={selectedVillage} onChange={handleVillageChange} options={villages}/>
+                {error && <p>Error: {error}</p>}
+                <Button type={"submit"} conten={"Register"}/>
+                <p className="mb-5 pb-lg-2 mt-4" style={{ color: "#393f81"  }}>Have an account?{" "}<a href="/" style={{ color: "#393f81" }}>Login here</a></p>
+              </form>
+            </div>
+          </div>
+          <div className="col-md-6 col-lg-5 d-none d-md-block">
+          <img
+                    src={register1}
+                    alt="login form"
+                    className="img-fluid"
+                    style={{ borderRadius: "1rem 0 0 1rem" }}
+                  />
+          <img
+          src={register2}
+          alt="login form"
+          className="img-fluid"
+          style={{ borderRadius: "1rem 0 0 1rem" }}
+          />
+          </div>
         </div>
-        {error && <p>Error: {error}</p>}
-        <Button type={"submit"} conten={"BUAT AKUN"}/>
-      </form>
-      <p className="text-center">Sudah memiliki akun? <Link to="/">Masuk disini</Link></p>
+      </div>
     </div>
+  </div>
+</div>
+</section>
+
+    
   );
 };
 

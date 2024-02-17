@@ -35,16 +35,17 @@ const AddAdmin = () => {
   return (
     <>
       <div className="container p-4">
-      <h3 className="mb-3">DAFTAR AKUN BARU</h3>
+      <h3 className="mb-3">DAFTAR AKUN BARU UNTUK ADMIN</h3>
       <div className="login-line"></div>
       <form onSubmit={createUser}>
-      <InputForm conten={"Nama"} type={"text"} id={"name"} value={name} onchange={e => setName(e.target.value)} placeholder={"Masukan Nama Anda"}/>
-      <InputForm conten={"Email"} type={"email"} id={"email"} value={email} onchange={e => setEmail(e.target.value)} placeholder={"Masukan Email Anda"}/>
-      <InputForm conten={"Password"} type={"password"} id={"password"} value={password} onchange={e => setPassword(e.target.value)} placeholder={"Masukan Password Anda"}/>
-        {error && Error}
+      <InputForm conten={"Nama"} type={"text"} id={"name"} value={name} onChange={e => setName(e.target.value)} placeholder={"Masukan Nama Anda"}/>
+      <InputForm conten={"Email"} type={"email"} id={"email"} value={email} onChange={e => setEmail(e.target.value)} placeholder={"Masukan Email Anda"}/>
+      <InputForm conten={"Password"} type={"password"} id={"password"} value={password} onChange={e => setPassword(e.target.value)} placeholder={"Masukan Password Anda"}/>
+        {error && <div style={{ color: 'red' }}>{error}</div>}
         <Button type={"submit"} conten={"BUAT AKUN"}/>
         <p className='text-center' style={{color:"tomato"}}>AKUN INI DI KHUSUSKAN UNTUK ADMIN</p>
       </form>
+      
       </div>
       
     </>

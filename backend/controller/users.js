@@ -1,4 +1,4 @@
-const { Users } = require('../models');
+const { Users, Address } = require('../models');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const UserController = {
@@ -6,7 +6,9 @@ const UserController = {
   // Get all users
   getAllUsers: async (req, res) => {
     try {
-      const users = await Users.findAll();
+      const users = await Users.findAll({
+        include: Address 
+      });
       res.json(users);
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error get all Users' });
@@ -29,16 +31,17 @@ const UserController = {
 
   // Create a new user
   createUser: async (req, res) => {
-    const { name, email, password, address, phoneNumber, createdBy } = req.body;
-    const hash = bcrypt.hashSync(password, saltRounds)
+    const { name, email, password, phoneNumber, province, regency, district, village } = req.body;
+    const hash = bcrypt.hashSync(password, saltRounds);
     try {
-      const user = await Users.create({ name, email, password: hash, address, phoneNumber, createdBy });
-      res.status(201).json(user);
-      console.log(user)
+      const address = await Address.create({ province, regency, district, village });
+      const user = await Users.create({ name, email, password: hash, phoneNumber, addressId: address.id });
+      res.status(201).json({ user, address });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   },
+  
 
   // Update an existing user
   updateUser: async (req, res) => {

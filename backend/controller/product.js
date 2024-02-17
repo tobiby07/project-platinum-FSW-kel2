@@ -1,34 +1,21 @@
 const db = require("../models");
+const { ProductCategory } = require('../models');
 const { urlPath } = require('../helpers/urlPath');
 const fs = require('fs');
 const Product = db.Product;
 
 class ProductController {
   async getAllProducts(req, res) {
-    try {
-      let products
-      if (!!req.query.categoryId) {
-        const categoryId = req.query.categoryId
-        products = await Product.findAll({
-          where: {
-            categoryId
-          }
+    try {     
+        const products = await Product.findAll({
+            include: ProductCategory
         });
-      } else {
-        products = await Product.findAll();
-      }
 
-      products = products.map((value) => {
-        value.productImage = urlPath(value.productImage, req)
-
-        return value
-      })
-
-      res.json(products);
+        res.json(products);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-  }
+}
 
   async createProduct(req, res) {
     try {

@@ -5,9 +5,9 @@ const SelectForm = ({ contenLabel, value, options, contenOption, onChange }) => 
     return null; 
   }
   return (
-    <div className="mb-3">
-      <label className="form-label font-weight-bold">{contenLabel}:</label>
-      <select value={value} onChange={onChange} className="form-control rounded-0 font-style-italic">
+    <div  className="form-outline mb-4">
+      <label className="form-label">{contenLabel}:</label>
+      <select value={value} onChange={onChange} className="form-control form-control-lg">
         <option value="">{contenOption}</option>
         {options.map(option => (
           <option key={option.name} value={option.id}>{option.name}</option>

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import InputForm from '../assets/input-form';
+import SelectForm from '../assets/select-form';
 
 const ProductForm = () => {
-  const [formData, setFormData] = useState({
-    categoryId: '',
-    productName: '',
-    productDescription: '',
-    price: '',
-    stock: '',
-    productImage: null
-  });
+  const [productName, setProductName] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [productImage, setProductImage] = useState(null);
+  const [categoryId, setCategoryId] = useState("");
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState('');
 
@@ -27,60 +27,47 @@ const ProductForm = () => {
     fetchCategories();
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleImageChange = (e) => {
-    setFormData(prevState => ({
-      ...prevState,
-      productImage: e.target.files[0]
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const createProduct = async (e) => {
+    e.preventDefault()
     try {
-      const formDataToSend = new FormData();
-      for (const key in formData) {
-        formDataToSend.append(key, formData[key]);
-      }
-
-      const response = await axios.post("http://localhost:3001/products", formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      console.log(response.data);
-      setFormData({
-        categoryId: '',
-        productName: '',
-        productDescription: '',
-        price: '',
-        stock: '',
-        productImage: null
-      });
+      const response = await axios.post("http://localhost:3001/api/products", {
+        productName,
+        productDescription,
+        price,
+        stock,
+        productImage,
+        categoryId
+    })
+    console.log(response.data); 
+     setProductName('')
+     setProductDescription('')
+     setCategoryId('')
+     setPrice('')
+     setStock('')
+     setProductImage('')
     } catch (error) {
-      console.error(error);
-      setError('Failed to create a new product');
+      setError(error.message);
     }
-  };
-
+  }
   return (
     <>
+    <form onSubmit={createProduct}>
+      <SelectForm contenLabel={'Category'}
+    value={categoryId}
+    options={categories}
+    contenOption={"Pilih Category"}
+    onChange={e => setCategoryId(e.target.value)} />
+      <InputForm type={"text"} value={productName} onChange={e => setProductName(e.target.value)} id={""} placeholder={"Masukan Nama Product"} conten={"Nama Product"} />
+    </form>
       <h2>Add New Product</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={createProduct}>
         <div>
           <label htmlFor="categoryId">Category:</label>
           <select
             id="categoryId"
             name="categoryId"
-            value={formData.categoryId}
-            onChange={handleChange}
+            value={categoryId}
+            onChange={e => setCategoryId(e.target.value)}
             required
           >
             <option value="">Select Category</option>
@@ -95,8 +82,8 @@ const ProductForm = () => {
             type='text'
             id='productName'
             name='productName'
-            value={formData.productName}
-            onChange={handleChange}
+            value={productName}
+            onChange={e => setProductName(e.target.value)}
             placeholder='Product Name'
             required
           />
@@ -106,8 +93,8 @@ const ProductForm = () => {
           <textarea
             id='productDescription'
             name='productDescription'
-            value={formData.productDescription}
-            onChange={handleChange}
+            value={productDescription}
+            onChange={e => setProductDescription(e.target.value)}
             placeholder='Product Description'
             required
           />
@@ -118,8 +105,8 @@ const ProductForm = () => {
             type='text'
             id='price'
             name='price'
-            value={formData.price}
-            onChange={handleChange}
+            value={price}
+            onChange={e => setPrice(e.target.value)}
             placeholder='Price'
             required
           />
@@ -130,8 +117,8 @@ const ProductForm = () => {
             type='text'
             id='stock'
             name='stock'
-            value={formData.stock}
-            onChange={handleChange}
+            value={stock}
+            onChange={e => setStock(e.target.value)}
             placeholder='Stock'
             required
           />
@@ -142,7 +129,7 @@ const ProductForm = () => {
             type='file'
             id='productImage'
             name='productImage'
-            onChange={handleImageChange}
+            onChange={e => setProductImage(e.target.value)}
             required
           />
         </div>

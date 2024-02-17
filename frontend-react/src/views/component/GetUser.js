@@ -25,6 +25,7 @@ const UserList = () => {
           <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>Address</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@ const UserList = () => {
             <tr key={index}>
               <td>{user.name}</td>
               <td>{user.email}</td>
+              <td>{user.Address ? `${user.Address.province}, ${user.Address.regency}, ${user.Address.district}, ${user.Address.village}` : '-'}</td>
             </tr>
           ))}
         </tbody>

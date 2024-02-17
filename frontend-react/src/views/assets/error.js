@@ -1,5 +1,5 @@
 import React from 'react'
-const Error = () => {
+const Error = (error) => {
     return (
         <>
         <div style={{ color: 'red' }}>{error}</div>

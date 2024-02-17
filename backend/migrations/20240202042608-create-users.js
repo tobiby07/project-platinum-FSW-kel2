@@ -21,8 +21,12 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      address: {
-        type: Sequelize.STRING
+      addressId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Address',
+          key: 'id'
+        }
       },
       phoneNumber: {
         type: Sequelize.STRING
