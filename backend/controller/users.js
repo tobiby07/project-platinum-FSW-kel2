@@ -31,11 +31,11 @@ const UserController = {
 
   // Create a new user
   createUser: async (req, res) => {
-    const { name, email, password, phoneNumber, province, regency, district, village } = req.body;
+    const { name, email, password, phoneNumber, province, regency, district, village, role } = req.body;
     const hash = bcrypt.hashSync(password, saltRounds);
     try {
       const address = await Address.create({ province, regency, district, village });
-      const user = await Users.create({ name, email, password: hash, phoneNumber, addressId: address.id });
+      const user = await Users.create({ name, email, password: hash, phoneNumber, addressId: address.id, role });
       res.status(201).json({ user, address });
     } catch (error) {
       res.status(400).json({ error: error.message });
