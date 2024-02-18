@@ -1,6 +1,5 @@
 const db = require("../models");
 const { ProductCategory } = require('../models');
-const { urlPath } = require('../helpers/urlPath');
 const fs = require('fs');
 const Product = db.Product;
 
@@ -19,17 +18,13 @@ class ProductController {
 
   async createProduct(req, res) {
     try {
-      // if (res.locals.user.role !== 'admin') {
-      //   return res.status(403).json({ message: 'Permission denied. Only admin can create products.' });
-      // }
-
+      const imagePath = req.file ?  `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}` : null
       const {
         categoryId,
         productName,
         productDescription,
         price,
         stock,
-        productImage,
       } = req.body;
 
       const newProduct = await Product.create({
@@ -38,7 +33,7 @@ class ProductController {
         productDescription,
         price,
         stock,
-        productImage,
+        productImage: imagePath || null,
       });
 
       res.status(201).json(newProduct);
@@ -99,43 +94,6 @@ class ProductController {
       await product.save();
 
       return res.status(200).json({ message: "Product updated successfully" });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Failed to update product" });
-    }
-  }
-
-  async uploadImage(req, res) {
-    const timestamp = new Date().getTime();
-    try {
-      let image = req.files.uploads.path
-      const productId = req.query.productId
-      if (!productId) {
-        fs.unlinkSync(image);
-        return res.status(400).json({ message: 'id is missing' });
-      }
-
-      if (res.locals.user.role !== 'admin') {
-        fs.unlinkSync(image);
-        return res.status(403).json({ message: 'Permission denied' });
-      }
-
-      const product = await Product.findByPk(productId);
-
-      if (!product) {
-        fs.unlinkSync(image);
-        return res.status(404).json({ message: "Product not found" });
-      }
-
-      let extension = image.split(".")[1]
-      const newName = `images/${timestamp}-${product.productName.replace(" ", "-").toLowerCase()}.` + extension
-      fs.rename(image, newName, () => { });
-
-      product.productImage = newName
-
-      await product.save();
-
-      return res.status(200).json({ message: "Image Product updated successfully" });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: "Failed to update product" });

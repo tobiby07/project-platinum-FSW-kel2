@@ -1,11 +1,11 @@
-const express = require ('express')
-const productRoute = express.Router()
-const ProductController = require('../controller/product')
+const express = require('express');
+const productRoute = express.Router();
+const ProductController = require('../controller/product');
+const { image } = require('../middleware/image-middleware');
 
-productRoute.get('/', ProductController.getAllProducts)
-productRoute.post('/', ProductController.createProduct)
-productRoute.delete('/:id', ProductController.deleteProduct)
-productRoute.patch('/:id', ProductController.editProduct)
+productRoute.get('/', ProductController.getAllProducts);
+productRoute.post('/', image.single('productImage'), ProductController.createProduct);
+productRoute.delete('/:id', ProductController.deleteProduct);
+productRoute.patch('/:id', ProductController.editProduct);
 
-
-module.exports={productRoute}
+module.exports = { productRoute };
