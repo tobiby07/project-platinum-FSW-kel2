@@ -85,7 +85,7 @@ const AddUser = () => {
   };
 
   const createUser = async (e) => {
-    const provinceObject = provinces.find(item => item.id = selectedProvince)
+    const provinceObject = provinces.find(item => item.id === selectedProvince)
     const regencyObject = regencies.find(item => item.id = selectedRegency)
     const districkObject = districts.find(item => item.id = selectedDistrict)
     const villageObject = villages.find(item => item.id = selectedVillage)
