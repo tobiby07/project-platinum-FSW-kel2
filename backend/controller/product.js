@@ -5,20 +5,20 @@ const Product = db.Product;
 
 class ProductController {
   async getAllProducts(req, res) {
-    try {     
-        const products = await Product.findAll({
-            include: ProductCategory
-        });
+    try {
+      const products = await Product.findAll({
+        include: ProductCategory
+      });
 
-        res.json(products);
+      res.json(products);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
-}
+  }
 
   async createProduct(req, res) {
     try {
-      const imagePath = req.file ?  `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}` : null
+      const imagePath = req.file ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}` : null
       const {
         categoryId,
         productName,
@@ -44,9 +44,9 @@ class ProductController {
   }
 
   async deleteProduct(req, res) {
-    const productId = req.params.productId;
+    const productId = req.params.id;
     try {
-      if (res.locals.user.role !== 'admin') {
+      if (req.headers.role !== 'admin') {
         return res.status(403).json({ message: 'Permission denied' });
       }
 
@@ -70,11 +70,10 @@ class ProductController {
   }
 
   async editProduct(req, res) {
-    const productId = req.params.productId;
+    const productId = req.params.id;
     const { productName, productDescription, price, stock, categoryId } = req.body;
-
     try {
-      if (res.locals.user.role !== 'admin') {
+      if (req.headers.role !== 'admin') {
         return res.status(403).json({ message: 'Permission denied' });
       }
       // Find produk berdasarkan ID
