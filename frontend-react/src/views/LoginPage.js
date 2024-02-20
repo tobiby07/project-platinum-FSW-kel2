@@ -30,9 +30,10 @@ function LoginPage() {
       if (data && data.token) {
         const { token, data: { role } } = data;
         localStorage.setItem('token', token);
+        localStorage.setItem('name', data.data.name);
         if (role) {
           localStorage.setItem('role', role);
-          history(role === 'admin' ? '/dashboard' : '/home');
+          history(role === 'admin' ? '/admin' : '/home');
         } else {
           setError('User role not found in response data');
         }
@@ -67,7 +68,7 @@ function LoginPage() {
                           className="fas fa-cubes fa-2x me-3"
                           style={{ color: "#ff6219" }}
                         />
-                        <span className="h1 fw-bold mb-0"><img  src={logo} className='sm' alt="" /></span>
+                        <span className="h1 fw-bold mb-0"><img src={logo} className='sm' alt="" /></span>
                       </div>
                       <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: 1 }}> Sign into your account</h5>
                       <InputForm conten={"Email"} value={email} type={"email"} placeholder={"masukan email anda"} id={"email"} onChange={(e) => setEmail(e.target.value)} />

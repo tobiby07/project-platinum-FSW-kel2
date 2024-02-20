@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -16,50 +16,85 @@ code {
   font-style: italic;
 }
 
-.main-navbar{
+.main-navbar {
   border-bottom: 1px solid #ccc;
 }
-.main-navbar .top-navbar{
+.main-navbar .top-navbar {
   background-color: #000000;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.main-navbar .top-navbar .brand-name{
+.main-navbar .top-navbar .brand-name {
   color: #fff;
 }
-.main-navbar .top-navbar .nav-link{
+.main-navbar .top-navbar .nav-link {
   color: #fff;
   font-size: 16px;
   font-weight: 500;
 }
-.main-navbar .top-navbar .dropdown-menu{
+.main-navbar .top-navbar .dropdown-menu {
   padding: 0px 0px;
   border-radius: 0px;
 }
-.main-navbar .top-navbar .dropdown-menu .dropdown-item{
+.main-navbar .top-navbar .dropdown-menu .dropdown-item {
   padding: 8px 16px;
   border-bottom: 1px solid #ccc;
   font-size: 14px;
 }
-.main-navbar .top-navbar .dropdown-menu .dropdown-item i{
+.main-navbar .top-navbar .dropdown-menu .dropdown-item i {
   width: 20px;
   text-align: center;
   color: #ff0000;
   font-size: 14px;
 }
-.main-navbar .navbar{
+.main-navbar .navbar {
   padding: 0px;
   background-color: #ddd;
 }
-.main-navbar .navbar .nav-item .nav-link{
+.main-navbar .navbar .nav-item .nav-link {
   padding: 8px 20px;
   color: #000;
   font-size: 15px;
 }
 
 @media only screen and (max-width: 600px) {
-  .main-navbar .top-navbar .nav-link{
-      font-size: 12px;
-      padding: 8px 10px;
+  .main-navbar .top-navbar .nav-link {
+    font-size: 12px;
+    padding: 8px 10px;
   }
+}
+/* ADMIN CSS */
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+}
+.admin-main {
+  display: flex;
+  flex-direction: row;
+}
+.admin-sidebar {
+  display: flex;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.page-container .admin-header {
+  color: #fff;
+  height: 70px;
+}
+
+.page-container .admin-header .container-fluid .dropdown {
+  float: right;
+  margin-right: 20px;
+  margin-top: 15px;
+}
+
+.page-container .admin-content {
+  flex-grow: 1;
+  margin: 10px;
+  padding: 10px;
 }
