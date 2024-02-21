@@ -30,6 +30,7 @@ app.use('/api/products', productRoute)
 app.use('/api/categories', categoryRoute)
 app.use('/api/order-items', orderItemRoute)
 app.use('/api/order', orderRoute)
+app.use('/images', express.static('images'))
 app.listen(port, () => {
   console.log(`app running at http://localhost:${port}`)
 })

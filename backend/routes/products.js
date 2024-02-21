@@ -6,6 +6,6 @@ const { image } = require('../middleware/image-middleware');
 productRoute.get('/', ProductController.getAllProducts);
 productRoute.post('/', image.single('productImage'), ProductController.createProduct);
 productRoute.delete('/:id', ProductController.deleteProduct);
-productRoute.patch('/:id', ProductController.editProduct);
+productRoute.patch('/:id', image.single('productImage'), ProductController.editProduct);
 
 module.exports = { productRoute };

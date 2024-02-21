@@ -2,7 +2,8 @@ const db = require("../models");
 const { ProductCategory } = require('../models');
 const fs = require('fs');
 const Product = db.Product;
-
+const multer = require('multer')
+const upload = multer({ dest: '../images/' })
 class ProductController {
   async getAllProducts(req, res) {
     try {
@@ -18,7 +19,7 @@ class ProductController {
 
   async createProduct(req, res) {
     try {
-      const imagePath = req.file ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}` : null
+      const imagePath = req.file?.filename || null
       const {
         categoryId,
         productName,
@@ -71,6 +72,7 @@ class ProductController {
 
   async editProduct(req, res) {
     const productId = req.params.id;
+    const imagePath = req.file?.filename || null
     const { productName, productDescription, price, stock, categoryId } = req.body;
     try {
       if (req.headers.role !== 'admin') {
@@ -89,7 +91,7 @@ class ProductController {
       product.price = price;
       product.stock = stock;
       product.categoryId = categoryId;
-
+      product.productImage = imagePath || null;
       await product.save();
 
       return res.status(200).json({ message: "Product updated successfully" });
