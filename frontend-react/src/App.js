@@ -7,6 +7,7 @@ import Dashboard from './views/Dashboard';
 import AddAdmin from './views/RegisterAdmin';
 import Admin from './views/admin/pages/dashboard';
 import Product from './views/admin/pages/products';
+import Category from './views/admin/pages/categories';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/products" element={<Product />} />
+          <Route path="/admin/categories" element={<Category />} />
         </Routes>
       </Router>
     </div>
