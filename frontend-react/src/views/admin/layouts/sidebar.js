@@ -16,10 +16,9 @@ function sidebar() {
                     </Link>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white">
-
+                    <Link to="/admin/categories" className="nav-link text-white">
                         Categories
-                    </a>
+                    </Link>
                 </li>
                 <li>
                     <Link to="/admin/products" className="nav-link text-white">
