@@ -7,6 +7,9 @@ import LoginPage from './views/auth/LoginPage';
 import AddUser from './views/auth/RegisterUser';
 import HomePage from './views/client/HomePage';
 import AddAdmin from './views/auth/RegisterAdmin';
+import DetailUSer from './views/client/DetailUser';
+
+const idUser = await localStorage.getItem('id');
 
 
 function App() {
@@ -18,6 +21,7 @@ function App() {
           <Route path='/' element={< LoginPage/>} />
           <Route path="/register-user" element={<AddUser />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path={`/detail-user/${idUser}`} element={<DetailUSer />} />
 
           {/* admin route */}
           <Route path="/register-admin" element={<AddAdmin />} />

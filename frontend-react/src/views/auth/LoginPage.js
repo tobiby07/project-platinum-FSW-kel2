@@ -31,6 +31,7 @@ function LoginPage() {
         const { token, data: { role } } = data;
         localStorage.setItem('token', token);
         localStorage.setItem('name', data.data.name);
+        localStorage.setItem('id', data.data.id);
         if (role) {
           localStorage.setItem('role', role);
           history(role === 'admin' ? '/admin' : '/home');

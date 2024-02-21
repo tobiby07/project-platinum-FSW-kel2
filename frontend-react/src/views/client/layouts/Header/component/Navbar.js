@@ -5,7 +5,12 @@ import { FaRegUser } from "react-icons/fa";
 import { FiLogOut } from 'react-icons/fi';
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 
-const userName = await localStorage.getItem('name');
+const userName = localStorage.getItem('name');
+const idUser = localStorage.getItem('id');
+
+console.log(userName)
+console.log(idUser)
+
 
 const TopNav = () => {
   
@@ -57,7 +62,7 @@ const TopNav = () => {
                   <li className="nav-item ">
                     <a
                       className="nav-link  "
-                      href='/user/:userName'
+                      href={`/detail-user/${idUser}`}
                       role="button"
                     >
                       <FaRegUser size={20} className='mx-2' /> {userName}
