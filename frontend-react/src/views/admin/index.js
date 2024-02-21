@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar from './layouts/sidebar';
 import Navbar from './layouts/navbar';
+import { useNavigate } from 'react-router-dom';
 const Layout = ({ children }) => {
+    const history = useNavigate();
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            history('/');
+        } else {
+            if (role !== 'admin') {
+                history('/home');
+            }
+        }
+
+    }, [token, role, history]);
     return (
         <div className='admin-container'>
             <div className='admin-sidebar '>

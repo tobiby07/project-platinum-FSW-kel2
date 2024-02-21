@@ -4,6 +4,9 @@ function Navbar() {
     const history = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        localStorage.removeItem('name');
+        localStorage.removeItem('username');
         history('/');
     };
     return (
