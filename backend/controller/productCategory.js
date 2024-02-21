@@ -5,7 +5,9 @@ class ProductCategoryController {
     async getAllCategories(req, res) {
         try {
             console.log("coba");
-            const categories = await ProductCategory.findAll();
+            const categories = await ProductCategory.findAll({
+                order: [['categoryName', 'ASC']],
+            });
             res.json(categories);
         } catch (error) {
             console.log(error);
@@ -45,6 +47,7 @@ class ProductCategoryController {
             }
             category.categoryName = name;
             await category.save();
+            res.json(category);
         } catch (error) {
             console.log(error);
         }
