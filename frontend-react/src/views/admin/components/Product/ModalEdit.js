@@ -10,7 +10,7 @@ const ModalEdit = ({ ...props }) => {
     const [description, setDescription] = useState(props.product.productDescription)
     const [price, setPrice] = useState(props.product.price)
     const [stock, setStock] = useState(props.product.stock)
-    const [productImage, setProductImage] = useState(null)
+    const [productImage, setProductImage] = useState(props.product.productImage ? props.product.productImage : '')
     const handleOpenModal = () => {
         setShowModal(true);
     };
@@ -30,20 +30,19 @@ const ModalEdit = ({ ...props }) => {
             console.log('error', error)
         }
     }, [])
-    console.log(props)
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const formData = new FormData()
+        formData.append('productImage', productImage)
+        formData.append('productName', productName)
+        formData.append('productDescription', description)
+        formData.append('price', price)
+        formData.append('stock', stock)
+        formData.append('categoryId', categoryId)
         try {
-            await axios.patch(`http://localhost:3001/api/products/${props.product.id}`, {
-                productName: productName,
-                productDescription: description,
-                price: price,
-                stock: stock,
-                productImage: productImage,
-                categoryId: categoryId
-            }, {
+            await axios.patch(`http://localhost:3001/api/products/${props.product.id}`, formData, {
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'multipart/form-data',
                     'role': localStorage.getItem('role')
                 }
             })
@@ -65,11 +64,11 @@ const ModalEdit = ({ ...props }) => {
         } else {
             handleCloseModalEdit()
         }
-    }, [handleOpenModal, props.showModalEdit])
+    }, [handleOpenModal, props.showModalEdit, handleCloseModalEdit])
     return (
         <Modal show={showModalEdit} onHide={handleCloseModalEdit} onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-                <Modal.Title>Add Category</Modal.Title>
+                <Modal.Title>Edit Product</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form onSubmit={(() => { })}>
@@ -148,6 +147,23 @@ const ModalEdit = ({ ...props }) => {
                                 placeholder={""}
                                 className={`form-control`}
                             />
+                        </div>
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                            <label className="form-label" htmlFor="name">
+                                Product Image
+                            </label>
+                            <input
+                                id="imageUrl"
+                                name="imageUrl"
+                                filename={productImage}
+                                onChange={(e) => setProductImage(e.target.files[0])}
+                                type={"file"}
+                                accept='image/*'
+                                className={`form-control`}
+                            />
+                            {productImage ? productImage.name ?
+                                <img src={URL.createObjectURL(productImage)} alt="preview" width={100} height={100} /> : <img src={`http://localhost:3001/images/${productImage}`} alt="preview" width={100} height={100} /> : null}
+
                         </div>
                     </div>
                 </form>

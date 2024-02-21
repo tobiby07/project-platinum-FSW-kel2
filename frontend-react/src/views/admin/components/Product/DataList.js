@@ -41,7 +41,10 @@ function DataList({ ...props }) {
     return (
         <tr key={props.product.id}>
             <th scope="row">{props.index + 1}</th>
-            <td>{props.product.productName}</td>
+            <td>
+                {props.product.productImage ? <img src={`http://localhost:3001/images/${props.product.productImage}`} alt="product" width="50px" className='rounded m-2' /> : ''}
+                {props.product.productName}
+            </td>
             <td>{props.product.ProductCategory ? `${props.product.ProductCategory.categoryName}` : 'Uncategorized'}</td>
             <td>{props.product.price}</td>
             <td>{props.product.stock}</td>

@@ -10,7 +10,7 @@ const BtnCreate = ({ setRefresh }) => {
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [stock, setStock] = useState('')
-    const [productImage, setProductImage] = useState(null)
+    const [productImage, setProductImage] = useState()
     const handleOpenModal = () => {
         setShowModal(true);
     };
@@ -32,14 +32,19 @@ const BtnCreate = ({ setRefresh }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const formData = new FormData()
+        formData.append('productImage', productImage)
+        formData.append('productName', productName)
+        formData.append('productDescription', description)
+        formData.append('price', price)
+        formData.append('stock', stock)
+        formData.append('categoryId', categoryId)
         try {
-            await axios.post("http://localhost:3001/api/products", {
-                productName: productName,
-                productDescription: description,
-                price: price,
-                stock: stock,
-                productImage: productImage,
-                categoryId: categoryId
+            await axios.post("http://localhost:3001/api/products", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'role': localStorage.getItem('role')
+                }
             })
             setProductName('')
             setDescription('')
@@ -141,6 +146,21 @@ const BtnCreate = ({ setRefresh }) => {
                                     placeholder={""}
                                     className={`form-control`}
                                 />
+                            </div>
+                            <div className="flex flex-wrap -mx-3 mb-6">
+                                <label className="form-label" htmlFor="name">
+                                    Product Image
+                                </label>
+                                <input
+                                    id="imageUrl"
+                                    name="imageUrl"
+                                    filename={productImage}
+                                    onChange={(e) => setProductImage(e.target.files[0])}
+                                    type={"file"}
+                                    accept='image/*'
+                                    className={`form-control`}
+                                />
+                                {productImage && <img src={URL.createObjectURL(productImage)} alt="preview" width={100} height={100} />}
                             </div>
                         </div>
                     </form>
