@@ -16,11 +16,13 @@ code {
   font-style: italic;
 }
 
+
 .main-navbar {
   border-bottom: 1px solid #ccc;
 }
+
 .main-navbar .top-navbar {
-  background-color: #000000;
+  background-color: #ffffff;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -28,7 +30,7 @@ code {
   color: #fff;
 }
 .main-navbar .top-navbar .nav-link {
-  color: #fff;
+  color: #000000;
   font-size: 16px;
   font-weight: 500;
 }
@@ -38,13 +40,13 @@ code {
 }
 .main-navbar .top-navbar .dropdown-menu .dropdown-item {
   padding: 8px 16px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #fff8f8;
   font-size: 14px;
 }
 .main-navbar .top-navbar .dropdown-menu .dropdown-item i {
   width: 20px;
   text-align: center;
-  color: #ff0000;
+  color: #ffd6d6;
   font-size: 14px;
 }
 .main-navbar .navbar {

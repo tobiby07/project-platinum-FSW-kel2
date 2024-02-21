@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import InputForm from './assets/input-form';
-import Button from './assets/button';
-import SelectForm from './assets/select-form';
-import logo from './assets/image/logo.png'
-import register1 from './assets/image/register-pic1.png'
-import register2 from './assets/image/register-pic2.png'
+import InputForm from './components/input-form';
+import Button from './components/button';
+import SelectForm from './components/select-form';
+import logo from '../image/logo.png'
+import register1 from '../image/register-pic1.png'
+import register2 from '../image/register-pic2.png'
 
 
 const AddUser = () => {

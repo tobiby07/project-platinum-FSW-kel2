@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Button from './assets/button';
-import InputForm from './assets/input-form';
+import Button from './components/button';
+import InputForm from './components/input-form';
 
 const AddAdmin = () => {
   const [name, setName] = useState('');
