@@ -1,14 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/image/navbar-logo.png'
+import logo from '../../../image/logo.png'
 import { FiHeart } from 'react-icons/fi'
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 const userName = await localStorage.getItem('name');
-function CartBar() {
-  return (
-    <>
-    </>
-  )
-}
+
 function Navbar() {
   const history = useNavigate();
 
@@ -25,11 +20,13 @@ function Navbar() {
             <div className="row">
               <div className="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
                 <h5 className="brand-name">
+                  <a href="/home" className='mx-5'>
                   <img
-                    style={{ width: "10rem" }}
+                    style={{ width: "60%"}}
                     src={logo}
-                    alt=""
+                    alt="Logo"
                   />
+                  </a>
                 </h5>
               </div>
               <div className="col-md-5 my-auto">
@@ -40,7 +37,7 @@ function Navbar() {
                       placeholder="Search your product"
                       className="form-control"
                     />
-                    <button className="btn bg-white" type="submit">
+                    <button className="btn bg-" type="submit">
                       <i className="fa fa-search" />
                     </button>
                   </div>
@@ -50,52 +47,22 @@ function Navbar() {
                 <ul className="nav justify-content-end">
                   <li className="nav-item">
                     <a className="nav-link" href="#">
-                      <i className="fa fa-shopping-cart" /> Cart (0)
+                      <i className="fa fa-shopping-cart" /> Cart (10)
+                    </a>
+                  </li>
+                  <li className="nav-item ">
+                    <a
+                      className="nav-link  "
+                      href='/user/:userName'
+                      role="button"
+                    >
+                      <i className="" /> {userName}
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      <i className="fa fa-heart" /> Wishlist (0)
+                    <a className="nav-link" onClick={handleLogout} href="#">
+                      <i className="" /> Sign Out
                     </a>
-                  </li>
-                  <li className="nav-item dropdown">
-                    <a
-                      className="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i className="fa fa-user" /> {userName}
-                    </a>
-                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          <i className="fa fa-user" /> Profile
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          <i className="fa fa-list" /> My Orders
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          <FiHeart className='nav-icons' /> My Wishlist
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          <AiOutlineShoppingCart className="nav-icons" /> My Cart
-                        </a>
-                      </li>
-                      <li>
-                        <a onClick={handleLogout} className="dropdown-item">
-                          <i className="fa fa-sign-out" /> Logout
-                        </a>
-                      </li>
-                    </ul>
                   </li>
                 </ul>
               </div>
@@ -108,7 +75,11 @@ function Navbar() {
               className="navbar-brand d-block d-sm-block d-md-none d-lg-none"
               href="#"
             >
-              CYBERSHOES.CO.ID
+                <img
+                    style={{ width: "40%"}}
+                    src={logo}
+                    alt="Logo"
+                  />
             </a>
             <button
               className="navbar-toggler"

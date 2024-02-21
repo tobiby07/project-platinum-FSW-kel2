@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import InputForm from './assets/input-form';
-import Button from './assets/button';
-import logo from './assets/image/logo.png'
-import pictureLogin from './assets/image/login-pic.png'
+import InputForm from './components/input-form';
+import Button from './components/button';
+import logo from '../image/logo.png'
+import pictureLogin from '../image/login-pic.png'
 
 function LoginPage() {
   const [email, setEmail] = useState('');
