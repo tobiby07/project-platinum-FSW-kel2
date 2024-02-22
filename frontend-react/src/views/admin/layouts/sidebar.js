@@ -1,39 +1,62 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-function sidebar() {
+import React, { useState } from 'react'
+import { Link, } from 'react-router-dom'
+import { Speedometer2, Boxes, People, BoxSeam, TriangleFill, List, XLg, Triangle } from 'react-bootstrap-icons'
+function Sidebar() {
+    const [isOpen, setIsOpen] = useState(false);
+    const menuItems = [
+        {
+            path: "/admin",
+            name: "Dashboard",
+            icon: <Speedometer2 />
+        },
+        {
+            path: "/admin/categories",
+            name: "Categories",
+            icon: <Boxes />
+        },
+        {
+            path: "/admin/products",
+            name: "Products",
+            icon: <BoxSeam />
+        },
+        {
+            path: "#",
+            name: "Customers",
+            icon: <People />
+        },
+        {
+            path: "#",
+            name: "Users",
+            icon: <People />
+        }
+    ]
     return (
-        <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style={{ width: '280px' }}>
-            <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <div className={`sidebar-content d-flex justify-content-between flex-column flex-shrink-0 text-white bg-dark`} style={{ width: isOpen ? "280px" : "50px" }}>
+            <div className='sidebar-logo' style={{ display: isOpen ? "none" : "block" }}>
+                <Triangle onClick={() => setIsOpen(!isOpen)} />
+            </div>
+            <div className='sidebar-header' style={{ display: isOpen ? "block" : "none" }}>
+                <div className='sidebar-title' >
+                    <Link to="/admin" className="text-white text-decoration-none ">
 
-                <span className="fs-4 position-relative">Admin</span>
-            </a>
+                        <span className=" position-relative">Admin</span>
+                    </Link>
+                    <XLg onClick={() => setIsOpen(!isOpen)} className='sidebar-close-icon' />
+                </div>
+            </div>
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
-                <li className="nav-item">
-                    <Link to="/admin" className="nav-link text-white">
-                        Dashboard
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/admin/categories" className="nav-link text-white">
-                        Categories
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/admin/products" className="nav-link text-white">
-                        Products
-                    </Link>
-                </li>
-                <li>
-                    <a href="#" className="nav-link text-white">
-
-                        Customers
-                    </a>
-                </li>
+                {menuItems.map((item, index) => (
+                    <li key={index} className="sidebar-item ">
+                        <Link to={item.path} className="sidebar-link text-white">
+                            <div className='sidebar-icon'>{item.icon}</div>
+                            <div className='sidebar-text' style={{ display: isOpen ? "inline" : "none" }}>{item.name}</div>
+                        </Link>
+                    </li>
+                ))}
             </ul>
         </div>
     )
 }
 
-export default sidebar
+export default Sidebar

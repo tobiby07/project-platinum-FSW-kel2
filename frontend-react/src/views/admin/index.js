@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
                     <Navbar />
                 </div>
                 <div className='admin-content'>{children}</div>
-                <div className='admin-footer'>Footer</div>
+                {/* <div className='admin-footer'>Footer</div> */}
             </div>
         </div>
     )

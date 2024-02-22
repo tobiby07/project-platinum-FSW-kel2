@@ -16,7 +16,6 @@ code {
   font-style: italic;
 }
 
-
 .main-navbar {
   border-bottom: 1px solid #ccc;
 }
@@ -77,6 +76,52 @@ code {
 .admin-sidebar {
   display: flex;
 }
+.sidebar-header {
+  display: flex;
+}
+.sidebar-header .sidebar-title {
+  padding: 10px 15px;
+  font-size: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.sidebar-close-icon {
+  padding: 10px;
+  font-size: 40px;
+}
+.sidebar-close-icon:hover {
+  color: deepskyblue;
+}
+.sidebar-logo {
+  font-size: 25px;
+  cursor: pointer;
+  padding: 3px 15px;
+  align-items: center;
+  text-align: center;
+}
+.sidebar-logo:hover {
+  color: deepskyblue;
+}
+.sidebar-item a {
+  display: flex;
+  color: #fff;
+  padding: 10px 15px;
+  text-decoration: none;
+  gap: 15px;
+  transition: all 0.5s;
+  align-items: center;
+}
+
+.sidebar-item a:hover {
+  background: blue;
+  color: #000;
+  transition: all 1s;
+}
+.sidebar-icon,
+.sidebar-text {
+  font-size: 18px;
+}
 
 .page-container {
   display: flex;
@@ -86,9 +131,12 @@ code {
 
 .page-container .admin-header {
   color: #fff;
-  height: 70px;
+  height: 60px;
 }
-
+.container-fluid {
+  display: flex;
+  justify-content: space-between;
+}
 .page-container .admin-header .container-fluid .dropdown {
   float: right;
   margin-right: 20px;

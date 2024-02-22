@@ -11,6 +11,9 @@ function Navbar() {
     };
     return (
         <div className="container-fluid">
+            <div className='p-3 '>
+                <h4>Cyber Shoes</h4>
+            </div>
             <div className="dropdown">
                 <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                     id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
