@@ -8,6 +8,7 @@ import AddUser from './views/auth/RegisterUser';
 import HomePage from './views/client/HomePage';
 import AddAdmin from './views/auth/RegisterAdmin';
 import DetailUSer from './views/client/DetailUser';
+import CartPage from './views/client/CartPage';
 
 const idUser = await localStorage.getItem('id');
 
@@ -22,6 +23,9 @@ function App() {
           <Route path="/register-user" element={<AddUser />} />
           <Route path="/home" element={<HomePage />} />
           <Route path={`/detail-user/${idUser}`} element={<DetailUSer />} />
+
+          {/* Cart Route */}
+          <Route path='/cart' element={<CartPage/>} />
 
           {/* admin route */}
           <Route path="/register-admin" element={<AddAdmin />} />
