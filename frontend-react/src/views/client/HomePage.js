@@ -1,9 +1,8 @@
-import Navbar from "./layouts/Header/Navbar"
-
+import HeaderHome from "./layouts/Header/HeaderHome"
 const HomePage = ()=> {
     return(
         <div>
-            <Navbar/>
+            <HeaderHome/>
         </div>
     )
 }
