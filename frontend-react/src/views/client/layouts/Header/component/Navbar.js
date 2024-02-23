@@ -22,7 +22,7 @@ const TopNav = () => {
 
   return (
     <div className="top-navbar">
-          <div className="container-fluid">
+          <div className="">
             <div className="row">
               {/* logo */}
               <div className="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
