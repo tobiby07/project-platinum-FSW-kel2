@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { Users, Address } = require('../models');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -7,10 +8,48 @@ const UserController = {
   getAllUsers: async (req, res) => {
     try {
       const users = await Users.findAll({
-        include: Address 
+        include: Address,
       });
       res.json(users);
     } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error get all Users' });
+    }
+  },
+
+  getCustomers: async (req, res) => {
+    console.log("coba");
+    try {
+      const users = await Users.findAll({
+        where: {
+          role: {
+            [Op.eq]: "member"
+          }
+        },
+        include: Address,
+      });
+      console.log('coba lagi')
+      res.json(users);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'Internal Server Error get all Users' });
+    }
+  },
+
+  getAdmin: async (req, res) => {
+    console.log("coba");
+    try {
+      const users = await Users.findAll({
+        where: {
+          role: {
+            [Op.eq]: "admin"
+          }
+        },
+        // include: Address,
+      });
+      console.log('coba lagi')
+      res.json(users);
+    } catch (error) {
+      console.log(error);
       res.status(500).json({ error: 'Internal Server Error get all Users' });
     }
   },
@@ -41,7 +80,7 @@ const UserController = {
       res.status(400).json({ error: error.message });
     }
   },
-  
+
 
   // Update an existing user
   updateUser: async (req, res) => {
