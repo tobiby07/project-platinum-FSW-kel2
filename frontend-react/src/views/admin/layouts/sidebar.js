@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, } from 'react-router-dom'
-import { Speedometer2, Boxes, People, BoxSeam, TriangleFill, List, XLg, Triangle } from 'react-bootstrap-icons'
+import { Speedometer2, Boxes, People, BoxSeam, PersonCircle, XLg, Triangle } from 'react-bootstrap-icons'
 function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
     const menuItems = [
@@ -20,14 +20,14 @@ function Sidebar() {
             icon: <BoxSeam />
         },
         {
-            path: "#",
+            path: "/admin/customers",
             name: "Customers",
             icon: <People />
         },
         {
-            path: "#",
+            path: "/admin/users",
             name: "Users",
-            icon: <People />
+            icon: <PersonCircle />
         }
     ]
     return (
