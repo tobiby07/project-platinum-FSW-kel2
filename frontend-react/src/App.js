@@ -11,6 +11,7 @@ import DetailUSer from './views/client/DetailUser';
 import Customer from './views/admin/pages/customers';
 import User from './views/admin/pages/users';
 import CartPage from './views/client/CartPage';
+import BrandPage from './views/client/BrandPage';
 
 const idUser = await localStorage.getItem('id');
 
@@ -26,6 +27,9 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path={`/detail-user/${idUser}`} element={<DetailUSer />} />
 
+
+          {/* Brand Route */}
+          <Route path={`/product/:brand`} element= {<BrandPage/>} />
           {/* Cart Route */}
           <Route path='/cart' element={<CartPage />} />
 
