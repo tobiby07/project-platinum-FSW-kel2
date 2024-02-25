@@ -1,16 +1,16 @@
 import Navbar from "./layouts/Header/component/Navbar"
-import EditUSer from "./layouts/main/EditUser"
+import UserDetail from "./layouts/main/UserDetail.jsx"
+
 
 const DetailUSer = () => {
     return (
         <div className="">
             <Navbar/>
         <div className="">
-            <EditUSer/>
+        <UserDetail/>
         </div>
         </div>
         
     )
 }
-
 export default DetailUSer

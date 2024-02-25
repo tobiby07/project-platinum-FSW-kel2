@@ -58,7 +58,9 @@ const UserController = {
   getUserById: async (req, res) => {
     const { id } = req.params;
     try {
-      const user = await Users.findByPk(id);
+      const user = await Users.findByPk(id, {
+        include: Address
+      });
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
@@ -85,15 +87,23 @@ const UserController = {
   // Update an existing user
   updateUser: async (req, res) => {
     const { id } = req.params;
-    const { name, email, password, address, phoneNumber, modifiedBy } = req.body;
-    const hash = bcrypt.hashSync(password, saltRounds)
+    const { name, email, password, phoneNumber, province, regency, district, village } = req.body;
     try {
       const user = await Users.findByPk(id);
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      await user.update({ name, email, password: hash, address, phoneNumber, modifiedBy });
-      res.json(user);
+      let hash = null;
+      if (password) {
+        hash = bcrypt.hashSync(password, saltRounds);
+      }
+      const updatedUser = await user.update({ name, email, password: hash, phoneNumber });
+      const userAddress = await Address.findByPk(user.addressId);
+      if (!userAddress) {
+        return res.status(404).json({ error: 'User address not found' });
+      }
+      await userAddress.update({ province, regency, district, village });
+      res.json({updatedUser, userAddress});
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
