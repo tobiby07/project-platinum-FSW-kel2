@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import Navbar from "./layouts/Header/component/Navbar";
 import Footer from "./layouts/footer/Footer";
+import { useParams } from 'react-router-dom';
 
 const BrandPage = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const params = useParams()
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -35,7 +37,7 @@ const BrandPage = () => {
     }
 
 
-    const categoryName = 'League'; 
+    const categoryName = params.brand; 
     const filteredProducts = products.filter(product => product.ProductCategory.categoryName === categoryName);
 
     return (
