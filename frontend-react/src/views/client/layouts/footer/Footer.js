@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 function Footer() {
   return (
-    <footer>
+    <footer className="mt-auto">
 
         { /* Widgets */ }
         <div className="bg-light py-3 py-xl-5 mt-4">
