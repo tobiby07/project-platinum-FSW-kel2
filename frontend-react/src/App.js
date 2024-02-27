@@ -12,6 +12,7 @@ import Customer from './views/admin/pages/customers';
 import User from './views/admin/pages/users';
 import CartPage from './views/client/CartPage';
 import BrandPage from './views/client/BrandPage';
+import DetailProduct from './views/client/detailProduct';
 
 const idUser = await localStorage.getItem('id');
 
@@ -28,8 +29,9 @@ function App() {
           <Route path={`/detail-user/${idUser}`} element={<DetailUSer />} />
 
 
-          {/* Brand Route */}
+          {/* produtcs Route */}
           <Route path={`/product/:brand`} element= {<BrandPage/>} />
+          <Route path={`/products/:id`} element= {<DetailProduct/>} />
           {/* Cart Route */}
           <Route path='/cart' element={<CartPage />} />
 
