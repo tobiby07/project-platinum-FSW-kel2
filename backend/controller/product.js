@@ -16,6 +16,25 @@ class ProductController {
       res.status(500).json({ message: error.message });
     }
   }
+  
+  async getProductById(req, res) {
+    const productId = req.params.id;
+    try {
+      const product = await Product.findByPk(productId, {
+        include: ProductCategory
+      });
+  
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+  
+      res.status(200).json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Failed to fetch product" });
+    }
+  }
+  
 
   async createProduct(req, res) {
     try {
