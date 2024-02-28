@@ -17,13 +17,14 @@ const Indicators = ({slide, className, ariaCurrent}) => {
     );
 }
 
-const CarouselImage = ({picture}) => {
-    return (
-        <div className="carousel-item active " data-bs-interval="3000">
-      <img src={picture} className="d-block w-100" alt="..."  />
+const CarouselImage = ({ picture, alt }) => {
+  return (
+    <div className="carousel-item active" data-bs-interval="3000">
+      <img src={picture} className="d-block w-100" alt={alt} />
     </div>
-    )
-}
+  );
+};
+
 
 const Slider = () => {
     return (
@@ -39,11 +40,11 @@ const Slider = () => {
   </div>
 
   <div className="carousel-inner">
-    <CarouselImage picture={slide1} />
-    <CarouselImage picture={slide2} />
-    <CarouselImage picture={slide3} />
-    <CarouselImage picture={slide4} />
-    <CarouselImage picture={slide5} />
+    <CarouselImage picture={slide1} alt={'Slide 1'}/>
+    <CarouselImage picture={slide2} alt={'Slide 2'}/>
+    <CarouselImage picture={slide3} alt={'Slide 3'}/>
+    <CarouselImage picture={slide4} alt={'Slide 4'}/>
+    <CarouselImage picture={slide5} alt={'Slide 5'}/>
   </div>
 
   <button
