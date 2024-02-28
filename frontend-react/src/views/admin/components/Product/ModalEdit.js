@@ -3,9 +3,11 @@ import { Modal, Button } from 'react-bootstrap';
 import axios from "axios";
 const ModalEdit = ({ ...props }) => {
     const [category, setCategory] = useState([]);
+    const [brand, setBrand] = useState([]);
     const [showModalEdit, setShowModal] = useState(false);
     const [loading, setLoading] = useState(true)
     const [categoryId, setCategoryId] = useState(props.product.categoryId)
+    const [brandId, setBrandId] = useState(props.product.brandId)
     const [productName, setProductName] = useState(props.product.productName)
     const [description, setDescription] = useState(props.product.productDescription)
     const [price, setPrice] = useState(props.product.price)
@@ -30,6 +32,17 @@ const ModalEdit = ({ ...props }) => {
             console.log('error', error)
         }
     }, [])
+
+    const getBrand = useCallback(async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/api/brands')
+            setBrand(response.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            console.log('error', error)
+        }
+    }, [])
     const handleSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData()
@@ -39,6 +52,7 @@ const ModalEdit = ({ ...props }) => {
         formData.append('price', price)
         formData.append('stock', stock)
         formData.append('categoryId', categoryId)
+        formData.append('brandId', brandId)
         try {
             await axios.patch(`http://localhost:3001/api/products/${props.product.id}`, formData, {
                 headers: {
@@ -55,8 +69,9 @@ const ModalEdit = ({ ...props }) => {
         }
     }
     useEffect(() => {
-        getCategory()
-    }, [getCategory])
+        getCategory();
+        getBrand();
+    }, [getCategory, getBrand])
 
     useEffect(() => {
         if (props.showModalEdit === true) {
@@ -86,6 +101,22 @@ const ModalEdit = ({ ...props }) => {
                                 <option value={""}>Select </option>
                                 {category.length > 0 && category.map((item, index) => (
                                     <option key={index} value={item.id}>{item.categoryName}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                            <label className="form-label" htmlFor="brandId">
+                                Brand
+                            </label>
+                            <select
+                                name='brandId'
+                                className="form-select"
+                                required={true}
+                                value={brandId}
+                                onChange={(e) => setBrandId(e.target.value)}>
+                                <option value={""}>Select </option>
+                                {brand.length > 0 && brand.map((item, index) => (
+                                    <option key={index} value={item.id}>{item.name}</option>
                                 ))}
                             </select>
                         </div>

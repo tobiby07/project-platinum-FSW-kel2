@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Admin from './views/admin/pages/dashboard';
+import Brand from './views/admin/pages/brands';
 import Product from './views/admin/pages/products';
 import Category from './views/admin/pages/categories';
 import LoginPage from './views/auth/LoginPage';
@@ -30,14 +31,15 @@ function App() {
 
 
           {/* produtcs Route */}
-          <Route path={`/product/:brand`} element= {<BrandPage/>} />
-          <Route path={`/products/:id`} element= {<DetailProduct/>} />
+          <Route path={`/product/:brand`} element={<BrandPage />} />
+          <Route path={`/products/:id`} element={<DetailProduct />} />
           {/* Cart Route */}
           <Route path='/cart' element={<CartPage />} />
 
           {/* admin route */}
           <Route path="/register-admin" element={<AddAdmin />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/brands" element={<Brand />} />
           <Route path="/admin/products" element={<Product />} />
           <Route path="/admin/categories" element={<Category />} />
           <Route path="/admin/customers" element={<Customer />} />

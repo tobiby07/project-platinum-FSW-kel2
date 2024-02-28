@@ -7,7 +7,7 @@ import axios from "axios";
 function DataList({ ...props }) {
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
-    const [productNameDelete, setProductNameDelete] = useState(props.product.productName);
+    const [brandNameDelete, setBrandNameDelete] = useState(props.brand.brandName);
     const handleOpenModalDelete = () => {
         setShowModalDelete(true);
     };
@@ -25,13 +25,13 @@ function DataList({ ...props }) {
     const handleDelete = async (e) => {
         e.preventDefault();
         try {
-            await axios.delete(`http://localhost:3001/api/products/${props.product.id}`, {
+            await axios.delete(`http://localhost:3001/api/brands/${props.brand.id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'role': localStorage.getItem('role')
                 }
             })
-            setProductNameDelete('')
+            setBrandNameDelete('')
             setShowModalDelete(false);
             props.setRefresh(true);
         } catch (error) {
@@ -39,16 +39,12 @@ function DataList({ ...props }) {
         }
     };
     return (
-        <tr key={props.product.id}>
+        <tr key={props.brand.id}>
             <th scope="row">{props.index + 1}</th>
             <td>
-                {props.product.productImage ? <img src={`http://localhost:3001/images/${props.product.productImage}`} alt="product" width="50px" className='rounded m-2' /> : ''}
-                {props.product.productName}
+                {props.brand.name}
             </td>
-            <td>{props.product.Brand ? `${props.product.Brand.name}` : 'N/A'}</td>
-            <td>{props.product.ProductCategory ? `${props.product.ProductCategory.categoryName}` : 'Uncategorized'}</td>
-            <td>{props.product.price}</td>
-            <td>{props.product.stock}</td>
+            <td>  {props.brand.logo ? <img src={`${props.brand.logo}`} alt={`${props.brand.name}`} width="50px" className='rounded m-2' /> : ''}</td>
             <td>
                 <FiEdit
                     onClick={handleOpenModalEdit}
@@ -57,7 +53,7 @@ function DataList({ ...props }) {
                     cursor="pointer"
                 />
                 <ModalEdit
-                    product={props.product}
+                    brand={props.brand}
                     setRefresh={props.setRefresh}
                     showModalEdit={showModalEdit}
                     handleCloseModalEdit={handleCloseModalEdit}
@@ -69,7 +65,7 @@ function DataList({ ...props }) {
                     cursor="pointer"
                 />
                 <Modal show={showModalDelete} onHide={handleCloseModalDelete} onSubmit={handleDelete}>
-                    <ModalDelete product={productNameDelete} handleDelete={handleDelete} />
+                    <ModalDelete brand={brandNameDelete} handleDelete={handleDelete} />
                 </Modal>
             </td>
         </tr>

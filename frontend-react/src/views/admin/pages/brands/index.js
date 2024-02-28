@@ -2,16 +2,16 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '../..'
 import axios from "axios";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import ButtonCreate from '../../components/Product/BtnCreate';
+import ButtonCreate from '../../components/Brand/BtnCreate';
 import { Modal, Button } from 'react-bootstrap';
-import ModalDelete from '../../components/Product/ModalDelete';
-import DataList from '../../components/Product/DataList';
-function Product() {
-    const [product, setProduct] = useState([])
+import ModalDelete from '../../components/Brand/ModalDelete';
+import DataList from '../../components/Brand/DataList';
+function Brand() {
+    const [brand, setBrand] = useState([])
     const [loading, setLoading] = useState(true)
     const [refresh, setRefresh] = useState(false);
-    const [productNameDelete, setProductNameDelete] = useState('')
-    const [productIdDelete, setIdNameDelete] = useState('')
+    const [brandNameDelete, setBrandNameDelete] = useState('')
+    const [brandIdDelete, setIdNameDelete] = useState('')
     const [showModalDelete, setShowModalDelete] = useState(false);
     const handleOpenModalDelete = () => {
         setShowModalDelete(true);
@@ -20,10 +20,10 @@ function Product() {
     const handleCloseModalDelete = () => {
         setShowModalDelete(false);
     };
-    const getProduct = useCallback(async () => {
+    const getBrand = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/products')
-            setProduct(response.data)
+            const response = await axios.get('http://localhost:3001/api/brands')
+            setBrand(response.data)
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -33,8 +33,8 @@ function Product() {
     const handleDelete = async (e) => {
         e.preventDefault();
         try {
-            await axios.delete(`http://localhost:3001/api/products/${productIdDelete}`)
-            setProductNameDelete('')
+            await axios.delete(`http://localhost:3001/api/brands/${brandIdDelete}`)
+            setBrandNameDelete('')
             setIdNameDelete('')
             setShowModalDelete(false);
             setRefresh(true);
@@ -43,14 +43,14 @@ function Product() {
         }
     };
     useEffect(() => {
-        getProduct();
+        getBrand();
         setRefresh(false);
-    }, [getProduct, refresh])
+    }, [getBrand, refresh])
     return (
         <Layout>
             <div className='flex flex-col'>
                 <div className='flex flex-col'>
-                    <div><h2>Product</h2></div>
+                    <div><h2>Brand</h2></div>
                     <div className='lg:ml-40 ml-0 lg:space-x-8'>
                         <ButtonCreate setRefresh={setRefresh} />
                     </div>
@@ -60,25 +60,22 @@ function Product() {
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Product</th>
                                 <th scope="col">Brand</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Stock</th>
+                                <th scope="col">Logo</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {loading ? (
                                 <tr>
-                                    <th colSpan={7}>Loading....</th>
+                                    <th colSpan={4}>Loading....</th>
                                 </tr>
-                            ) : product.length > 0 ? (
-                                product.map((product, index) => (
-                                    <DataList key={product.id} index={index} product={product} setRefresh={setRefresh} />
+                            ) : brand.length > 0 ? (
+                                brand.map((brand, index) => (
+                                    <DataList key={brand.id} index={index} brand={brand} setRefresh={setRefresh} />
                                 ))
                             ) : (<tr>
-                                <th colSpan={7}>No Data Found</th>
+                                <th colSpan={4}>No Data Found</th>
                             </tr>)}
                         </tbody>
                     </table>
@@ -87,4 +84,4 @@ function Product() {
         </Layout >
     )
 }
-export default Product
+export default Brand
