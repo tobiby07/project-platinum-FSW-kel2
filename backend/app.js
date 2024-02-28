@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const { usersRoute } = require('./routes/users');
 var authRouter = require('./routes/auth');
+const { brandRoute } = require('./routes/brands');
 const { productRoute } = require('./routes/products');
 const { categoryRoute } = require('./routes/category');
 const { orderItemRoute } = require('./routes/orderItem');
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 app.use('/auth', authRouter);
+app.use('/api/brands', brandRoute)
 app.use('/api/products', productRoute)
 app.use('/api/categories', categoryRoute)
 app.use('/api/order-items', orderItemRoute)

@@ -1,5 +1,5 @@
 const db = require("../models");
-const { ProductCategory } = require('../models');
+const { ProductCategory, Brands } = require('../models');
 const fs = require('fs');
 const Product = db.Product;
 const multer = require('multer')
@@ -8,7 +8,7 @@ class ProductController {
   async getAllProducts(req, res) {
     try {
       const products = await Product.findAll({
-        include: ProductCategory
+        include: [ProductCategory, Brands]
       });
 
       res.json(products);
@@ -16,31 +16,32 @@ class ProductController {
       res.status(500).json({ message: error.message });
     }
   }
-  
+
   async getProductById(req, res) {
     const productId = req.params.id;
     try {
       const product = await Product.findByPk(productId, {
-        include: ProductCategory
+        include: [ProductCategory, Brands]
       });
-  
+
       if (!product) {
         return res.status(404).json({ message: "Product not found" });
       }
-  
+
       res.status(200).json(product);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Failed to fetch product" });
     }
   }
-  
+
 
   async createProduct(req, res) {
     try {
       const imagePath = req.file?.filename || null
       const {
         categoryId,
+        brandId,
         productName,
         productDescription,
         price,
@@ -49,6 +50,7 @@ class ProductController {
 
       const newProduct = await Product.create({
         categoryId,
+        brandId,
         productName,
         productDescription,
         price,
@@ -92,7 +94,7 @@ class ProductController {
   async editProduct(req, res) {
     const productId = req.params.id;
     const imagePath = req.file?.filename || null
-    const { productName, productDescription, price, stock, categoryId } = req.body;
+    const { productName, productDescription, price, stock, categoryId, brandId } = req.body;
     try {
       if (req.headers.role !== 'admin') {
         return res.status(403).json({ message: 'Permission denied' });
@@ -110,6 +112,7 @@ class ProductController {
       product.price = price;
       product.stock = stock;
       product.categoryId = categoryId;
+      product.brandId = brandId;
       product.productImage = imagePath || null;
       await product.save();
 
