@@ -35,6 +35,7 @@ const ProductList = () => {
         <div className="card-body">
           <h5 className="card-title">{product.productName}</h5>
           <p className="card-text">Category: {product.ProductCategory.categoryName}</p>
+          <p className="card-text">Brand: {product.Brand.name}</p>
           <p className="card-text">Price: Rp.{product.price.toLocaleString()}</p>
           <p className="card-text">Stock: {product.stock}</p>
         </div>

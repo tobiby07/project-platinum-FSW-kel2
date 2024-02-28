@@ -35,13 +35,13 @@ const BrandMain = () => {
     }
 
 
-    const categoryName = params.brand; 
-    const filteredProducts = products.filter(product => product.ProductCategory.categoryName === categoryName);
+    const brandName = params.brand; 
+    const filteredProducts = products.filter(product => product.Brand.name === brandName);
 
     return (
         <div className="">
             <div>
-                <h1>{categoryName}</h1>
+                <h1>{brandName}</h1>
                 <ul>
                     {filteredProducts.map(product => (
                         <li key={product.id}>
