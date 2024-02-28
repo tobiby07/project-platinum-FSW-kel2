@@ -11,6 +11,7 @@ module.exports = {
     await queryInterface.bulkInsert('Products', [
       { 
         categoryId: 8,
+        brandId: 1,
         productName: "Product Example - Adidas",
         productDescription: lorem,
         price: generateRandom(200000, 1000000),
@@ -20,6 +21,7 @@ module.exports = {
         updatedAt: new Date() 
       },{ 
         categoryId: 8,
+        brandId: 1,
         productName: "Product Example - Adidas",
         productDescription: lorem,
         price: generateRandom(200000, 1000000),
@@ -28,6 +30,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 1,
         categoryId: 8,
         productName: "Product Example - Adidas",
         productDescription: lorem,
@@ -37,6 +40,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 1,
         categoryId: 8,
         productName: "Product Example - Adidas",
         productDescription: lorem,
@@ -46,6 +50,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 1,
         categoryId: 8,
         productName: "Product Example - Adidas",
         productDescription: lorem,
@@ -55,6 +60,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 1,
         categoryId: 8,
         productName: "Product Example - Adidas",
         productDescription: lorem,
@@ -64,6 +70,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 1,
         categoryId: 8,
         productName: "Product Example - Adidas",
         productDescription: lorem,
@@ -73,6 +80,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 1,
         categoryId: 8,
         productName: "Product Example - Adidas",
         productDescription: lorem,
@@ -82,6 +90,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 1,
         categoryId: 8,
         productName: "Product Example - Adidas",
         productDescription: lorem,
@@ -91,6 +100,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 1,
         categoryId: 8,
         productName: "Product Example - Adidas",
         productDescription: lorem,
@@ -101,6 +111,7 @@ module.exports = {
         updatedAt: new Date() 
       },
       { 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -110,6 +121,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -119,6 +131,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -128,6 +141,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -137,6 +151,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -146,6 +161,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -155,6 +171,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -164,6 +181,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -173,6 +191,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -182,6 +201,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 5,
         categoryId: 10,
         productName: 'Product Example - Converse',
         productDescription: lorem,
@@ -191,6 +211,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       }, { 
+        brandId: 6,
         categoryId: 12,
         productName: 'Product Example - League',
         productDescription: lorem,
@@ -201,6 +222,7 @@ module.exports = {
         updatedAt: new Date() 
       },{ 
         categoryId: 12,
+        brandId: 6,
         productName: 'Product Example - League',
         productDescription: lorem,
         price: generateRandom(200000, 1000000),
@@ -209,6 +231,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 6,
         categoryId: 12,
         productName: 'Product Example - League',
         productDescription: lorem,
@@ -218,6 +241,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 6,
         categoryId: 12,
         productName: 'Product Example - League',
         productDescription: lorem,
@@ -227,6 +251,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 6,
         categoryId: 12,
         productName: 'Product Example - League',
         productDescription: lorem,
@@ -236,6 +261,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 6,
         categoryId: 12,
         productName: 'Product Example - League',
         productDescription: lorem,
@@ -245,6 +271,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 6,
         categoryId: 12,
         productName: 'Product Example - League',
         productDescription: lorem,
@@ -254,6 +281,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 6,
         categoryId: 12,
         productName: 'Product Example - League',
         productDescription: lorem,
@@ -263,6 +291,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 6,
         categoryId: 12,
         productName: 'Product Example - League',
         productDescription: lorem,
@@ -272,6 +301,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 6,
         categoryId: 12,
         productName: 'Product Example - League',
         productDescription: lorem,
@@ -281,6 +311,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       }, { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -290,6 +321,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       }, { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -299,6 +331,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },  { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -308,6 +341,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },  { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -317,6 +351,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },  { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -326,6 +361,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },  { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -335,6 +371,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },  { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -344,6 +381,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },  { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -353,6 +391,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },  { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -362,6 +401,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },  { 
+        brandId: 4,
         categoryId: 9,
         productName: 'Product Example - New Balance (NB)',
         productDescription: lorem,
@@ -371,6 +411,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },  { 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -380,6 +421,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -389,6 +431,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -398,6 +441,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -407,6 +451,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -416,6 +461,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -425,6 +471,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -434,6 +481,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -443,6 +491,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -452,6 +501,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 3,
         categoryId: 7,
         productName: 'Product Example - Nike',
         productDescription: lorem,
@@ -461,6 +511,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -470,6 +521,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -479,6 +531,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -488,6 +541,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -497,6 +551,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -506,6 +561,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -515,6 +571,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -524,6 +581,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -533,6 +591,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -542,6 +601,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 7,
         categoryId: 13,
         productName: 'Product Example - Man',
         productDescription: lorem,
@@ -551,6 +611,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -560,6 +621,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -569,6 +631,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -578,6 +641,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -587,6 +651,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -596,6 +661,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -605,6 +671,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -614,6 +681,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -623,6 +691,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -632,6 +701,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 8,
         categoryId: 14,
         productName: 'Product Example - Woman',
         productDescription: lorem,
@@ -642,6 +712,7 @@ module.exports = {
         updatedAt: new Date() 
       },
       { 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,
@@ -652,6 +723,7 @@ module.exports = {
         updatedAt: new Date() 
       },
       { 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,
@@ -661,6 +733,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,
@@ -670,6 +743,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,
@@ -679,6 +753,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,
@@ -688,6 +763,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,
@@ -697,6 +773,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,
@@ -706,6 +783,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,
@@ -715,6 +793,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date() 
       },{ 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,
@@ -725,6 +804,7 @@ module.exports = {
         updatedAt: new Date() 
       },
       { 
+        brandId: 2,
         categoryId: 11,
         productName: 'Product Example - Vans',
         productDescription: lorem,

@@ -3,14 +3,14 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('ProductCategories', [
-      { id: 7, categoryName: 'Nike', createdAt: new Date(), updatedAt: new Date() },
-      { id: 8, categoryName: 'Adidas', createdAt: new Date(), updatedAt: new Date() },
-      { id: 9, categoryName: 'New Balance (NB)', createdAt: new Date(), updatedAt: new Date() },
-      { id: 10, categoryName: 'Converse', createdAt: new Date(), updatedAt: new Date() },
-      { id: 11, categoryName: 'Vans', createdAt: new Date(), updatedAt: new Date() },
-      { id: 12, categoryName: 'League', createdAt: new Date(), updatedAt: new Date() },
-      { id: 13, categoryName: 'Other Man', createdAt: new Date(), updatedAt: new Date() },
-      { id: 14, categoryName: 'Other Woman', createdAt: new Date(), updatedAt: new Date() },
+      { id: 7, categoryName: 'Sepatu Basket', createdAt: new Date(), updatedAt: new Date() },
+      { id: 8, categoryName: 'Sepatu Running', createdAt: new Date(), updatedAt: new Date() },
+      { id: 9, categoryName: 'Sepatu Casual', createdAt: new Date(), updatedAt: new Date() },
+      { id: 10, categoryName: 'Sepatu Sekolah', createdAt: new Date(), updatedAt: new Date() },
+      { id: 11, categoryName: 'Sepatu Sandal', createdAt: new Date(), updatedAt: new Date() },
+      { id: 12, categoryName: 'Sepatu Wanita', createdAt: new Date(), updatedAt: new Date() },
+      { id: 13, categoryName: 'Sepatu Pria', createdAt: new Date(), updatedAt: new Date() },
+      { id: 14, categoryName: 'Sepatu Hiking', createdAt: new Date(), updatedAt: new Date() },
     ], {});
   },
 
