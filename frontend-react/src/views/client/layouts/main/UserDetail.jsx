@@ -34,23 +34,23 @@ const UserDetail = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       {userData ? (
         <div className="user-detail">
           <h2 className="mt-4 text-center fw-semibold">User Detail</h2>
           <div
-            className="card my-4 mx-auto rounded-0"
+            className="card my-4 mx-auto"
             style={{ maxWidth: 540 }}
           >
             <div className="row g-0">
-              <div className="col-md-5">
+              <div className="col-6">
                 <img
                   src={profilePic}
-                  className="img-fluid rounded-0 p-md-4"
+                  className="img-fluid p-3 p-md-4"
                   alt="profile"
                 />
               </div>
-              <div className="col-md-7">
+              <div className="col-6">
                 <div className="card-body">
                   <h5 className="card-title fw-semibold">Nama</h5>
                   <p className="card-text">{userData.name}</p>
@@ -77,7 +77,7 @@ const UserDetail = () => {
             <div className="card-footer text-body-secondary">
               <div className="py-2 px-0 text-end">
                 <button
-                  className="btn bg-dark text-white rounded-0"
+                  className="btn bg-dark text-white"
                   onClick={openModal}
                 >
                   Edit User

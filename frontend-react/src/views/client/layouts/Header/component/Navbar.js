@@ -84,16 +84,13 @@ const TopNav = () => {
 
 
 function Navbar() {
-
   
   return (
-    <>
+    // <>
       <div className="main-navbar shadow-sm sticky-top">
         <TopNav/>
       </div>
-
-
-    </>
+    // </>
   );
 }
 
