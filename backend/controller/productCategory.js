@@ -4,7 +4,6 @@ class ProductCategoryController {
     // Get all categories
     async getAllCategories(req, res) {
         try {
-            console.log("coba");
             const categories = await ProductCategory.findAll({
                 order: [['categoryName', 'ASC']],
             });
@@ -28,6 +27,14 @@ class ProductCategoryController {
     // Create a new category
     async createCategory(req, res) {
         const { name } = req.body;
+        if (!name) {
+            return res.status(400).json({ message: 'Category name is required' });
+        }
+        const exist = await ProductCategory.findOne({ where: { categoryName: name } });
+        if (exist) {
+            console.log('Category already exists');
+            return res.status(400).json({ message: 'Category already exists' });
+        }
         try {
             const newCategory = await ProductCategory.create({ categoryName: name });
             res.status(201).json(newCategory);
