@@ -27,7 +27,6 @@ const UserController = {
         },
         include: Address,
       });
-      console.log('coba lagi')
       res.json(users);
     } catch (error) {
       console.log(error);
@@ -74,6 +73,15 @@ const UserController = {
   createUser: async (req, res) => {
     const { name, email, password, phoneNumber, province, regency, district, village, role } = req.body;
     const hash = bcrypt.hashSync(password, saltRounds);
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+    const existingUser = await Users.findOne({ where: { email } });
+    if (existingUser) {
+      console.log("sudah ada");
+      return res.status(422).json({ error: 'User already exists' });
+    }
+    console.log("sudah tidak ada");
     try {
       const address = await Address.create({ province, regency, district, village });
       const user = await Users.create({ name, email, password: hash, phoneNumber, addressId: address.id, role });
@@ -103,7 +111,7 @@ const UserController = {
         return res.status(404).json({ error: 'User address not found' });
       }
       await userAddress.update({ province, regency, district, village });
-      res.json({updatedUser, userAddress});
+      res.json({ updatedUser, userAddress });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
