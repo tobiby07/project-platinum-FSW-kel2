@@ -43,7 +43,7 @@ const ProductDetail = () => {
           <h5 className="p-2">Rp. {product.price.toLocaleString()}</h5>
           <p className="p-2">{product.productDescription}</p>
           <div className="add-to-cart-btn-stock m-2">
-            <button className="btn btn-dark rounded-0 py-2 px-3">
+            <button className="btn btn-danger py-2 px-3">
               <FiShoppingCart size={24} />
               <span className="px-3">Add to cart</span>
             </button>

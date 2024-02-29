@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -8,11 +8,11 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/products');
-        const randomProducts = getRandomProducts(response.data, 20);
+        const response = await axios.get("http://localhost:3001/api/products");
+        const randomProducts = getRandomProducts(response.data, 8);
         setProducts(randomProducts);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
       }
     };
 
@@ -24,33 +24,51 @@ const ProductList = () => {
   };
 
   return (
-    
-<div className="row row-cols-5">
-  {products.map(product => (
-    <div key={product.id} className="col mb-4">
-      <div className="card h-100">
-        <Link to={`/products/${product.id}`}>
-          <img src={`http://localhost:3001/images/${product.productImage}`} className="card-img-top" alt={product.productName} />
-        </Link>
-        <div className="card-body">
-          <h5 className="card-title">{product.productName}</h5>
-          <p className="card-text">Category: {product.ProductCategory.categoryName}</p>
-          <p className="card-text">Brand: {product.Brand.name}</p>
-          <p className="card-text">Price: Rp.{product.price.toLocaleString()}</p>
-          <p className="card-text">Stock: {product.stock}</p>
-        </div>
-        <div className="card-footer">
-          <div className="d-flex justify-content-between align-items-center">
-            <Link to={`/products/${product.id}`} className="btn btn-primary">Detail</Link>
-            <button className="btn btn-outline-secondary">Add to Cart</button>
+    <div className="container mb-5">
+      {/* row-cols-4 */}
+      <h4 className="fw-semibold text-center">RANDOM PICK</h4>
+      <div className="row">
+        {products.map((product) => (
+          <div key={product.id} className="col-6 g-1 col-md-4 col-lg-3 g-sm-4">
+            <div className="card h-100">
+              <Link to={`/products/${product.id}`}>
+                <img
+                  src={`http://localhost:3001/images/${product.productImage}`}
+                  className="card-img-top"
+                  alt={product.productName}
+                />
+              </Link>
+              <div className="card-body">
+                <h6 className="card-title fw-semibold">
+                  {product.productName}
+                </h6>
+                <p className="card-text text-secondary">
+                  {product.ProductCategory.categoryName}
+                </p>
+                <p className="card-text fw-semibold">{product.Brand.name}</p>
+                <p className="card-text">
+                  Rp. {product.price.toLocaleString()}
+                </p>
+                {/* <p className="card-text">Stock: {product.stock}</p> */}
+              </div>
+              <div className="card-footer">
+                <div className="d-flex justify-content-between align-items-center">
+                  <Link
+                    to={`/products/${product.id}`}
+                    className="btn btn-dark"
+                  >
+                    Detail
+                  </Link>
+                  <button className="btn btn-outline-danger">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
-  ))}
-</div>
-
-  
   );
 };
 

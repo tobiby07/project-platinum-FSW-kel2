@@ -39,7 +39,7 @@ const Slider = () => {
     <Indicators  slide={4}/>
   </div>
 
-  <div className="carousel-inner">
+  <div className="carousel-inner rounded">
     <CarouselImage picture={slide1} alt={'Slide 1'}/>
     <CarouselImage picture={slide2} alt={'Slide 2'}/>
     <CarouselImage picture={slide3} alt={'Slide 3'}/>

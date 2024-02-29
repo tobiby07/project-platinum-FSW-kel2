@@ -14,13 +14,14 @@ import User from './views/admin/pages/users';
 import CartPage from './views/client/CartPage';
 import BrandPage from './views/client/BrandPage';
 import DetailProduct from './views/client/detailProduct';
+import styles from './App.module.css'
 
 const idUser = await localStorage.getItem('id');
 
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.body}>
       <Router>
         <Routes>
           {/* user route */}
