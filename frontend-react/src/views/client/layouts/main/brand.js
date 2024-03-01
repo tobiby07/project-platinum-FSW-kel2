@@ -58,9 +58,9 @@ const BrandMain = () => {
                 {/* )} */}
               </Link>
               <div className="card-body">
-                  <h6 className="card-title fw-semibold">
-                    {product.productName}
-                  </h6>
+                <h6 className="card-title fw-semibold">
+                  {product.productName}
+                </h6>
                 <p className="card-text text-secondary">
                   {product.ProductCategory.categoryName}
                 </p>
@@ -70,11 +70,11 @@ const BrandMain = () => {
                 </p>
               </div>
               <div className="card-footer">
-                <div className="d-flex justify-content-between align-items-center">
-                  <Link to={`/products/${product.id}`} className="btn btn-dark">
+                <div className="d-flex justify-content-center justify-content-sm-between align-items-center flex-wrap flex-sm-nowrap">
+                  <Link to={`/products/${product.id}`} className="btn btn-dark my-1 my-sm-0 mx-1">
                     Detail
                   </Link>
-                  <button className="btn btn-outline-danger">
+                  <button className="btn btn-outline-danger text-nowrap my-1 my-sm-0 mx-1">
                     Add to Cart
                   </button>
                 </div>
