@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Link, } from 'react-router-dom'
 import { Speedometer2, Boxes, People, BoxSeam, PersonCircle, XLg, Triangle, Bookmarks } from 'react-bootstrap-icons'
+import { useAdminLayout } from '../adminLayoutContext';
 function Sidebar() {
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
+    const { isSidebarOpen, toggleSidebar } = useAdminLayout();
     const menuItems = [
         {
             path: "/admin",
@@ -35,18 +37,19 @@ function Sidebar() {
             icon: <PersonCircle />
         }
     ]
+    console.log("apakah Terbuka? ", isSidebarOpen)
     return (
-        <div className={`sidebar-content d-flex justify-content-between flex-column flex-shrink-0 text-white bg-dark`} style={{ width: isOpen ? "280px" : "50px" }}>
-            <div className='sidebar-logo' style={{ display: isOpen ? "none" : "block" }}>
-                <Triangle onClick={() => setIsOpen(!isOpen)} />
+        <div className={`sidebar-content d-flex justify-content-between flex-column flex-shrink-0 text-white bg-dark`} style={{ width: isSidebarOpen ? "280px" : "50px" }}>
+            <div className='sidebar-logo' style={{ display: isSidebarOpen ? "none" : "block" }}>
+                <Triangle onClick={toggleSidebar} />
             </div>
-            <div className='sidebar-header' style={{ display: isOpen ? "block" : "none" }}>
+            <div className='sidebar-header' style={{ display: isSidebarOpen ? "block" : "none" }}>
                 <div className='sidebar-title' >
                     <Link to="/admin" className="text-white text-decoration-none ">
 
                         <span className=" position-relative">Admin</span>
                     </Link>
-                    <XLg onClick={() => setIsOpen(!isOpen)} className='sidebar-close-icon' />
+                    <XLg onClick={toggleSidebar} className='sidebar-close-icon' />
                 </div>
             </div>
             <hr />
@@ -55,7 +58,7 @@ function Sidebar() {
                     <li key={index} className="sidebar-item ">
                         <Link to={item.path} className="sidebar-link text-white">
                             <div className='sidebar-icon'>{item.icon}</div>
-                            <div className='sidebar-text' style={{ display: isOpen ? "inline" : "none" }}>{item.name}</div>
+                            <div className='sidebar-text' style={{ display: isSidebarOpen ? "inline" : "none" }}>{item.name}</div>
                         </Link>
                     </li>
                 ))}

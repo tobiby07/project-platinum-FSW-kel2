@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar from './layouts/sidebar';
 import Navbar from './layouts/navbar';
 import { useNavigate } from 'react-router-dom';
+import AdminLayoutProvider from './adminLayoutContext';
 const Layout = ({ children }) => {
     const history = useNavigate();
     const token = localStorage.getItem('token');
@@ -20,16 +21,18 @@ const Layout = ({ children }) => {
     }, [token, role, history]);
     return (
         <div className='admin-container'>
-            <div className='admin-sidebar '>
-                <Sidebar />
-            </div>
-            <div className='page-container'>
-                <div className='admin-header bg-dark'>
-                    <Navbar />
+            <AdminLayoutProvider>
+                <div className='admin-sidebar '>
+                    <Sidebar />
                 </div>
-                <div className='admin-content'>{children}</div>
-                {/* <div className='admin-footer'>Footer</div> */}
-            </div>
+                <div className='page-container'>
+                    <div className='admin-header bg-dark'>
+                        <Navbar />
+                    </div>
+                    <div className='admin-content'>{children}</div>
+                    {/* <div className='admin-footer'>Footer</div> */}
+                </div>
+            </AdminLayoutProvider>
         </div>
     )
 }

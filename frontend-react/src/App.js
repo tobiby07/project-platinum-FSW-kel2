@@ -15,7 +15,6 @@ import CartPage from './views/client/CartPage';
 import BrandPage from './views/client/BrandPage';
 import DetailProduct from './views/client/detailProduct';
 import styles from './App.module.css'
-
 const idUser = await localStorage.getItem('id');
 
 
