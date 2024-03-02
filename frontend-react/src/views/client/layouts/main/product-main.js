@@ -52,14 +52,14 @@ const ProductList = () => {
                 {/* <p className="card-text">Stock: {product.stock}</p> */}
               </div>
               <div className="card-footer">
-                <div className="d-flex justify-content-between align-items-center">
+                <div className="d-flex justify-content-center justify-content-sm-between align-items-center flex-wrap flex-sm-nowrap">
                   <Link
                     to={`/products/${product.id}`}
-                    className="btn btn-dark"
+                    className="btn btn-dark my-1 my-sm-0 mx-1"
                   >
                     Detail
                   </Link>
-                  <button className="btn btn-outline-danger">
+                  <button className="btn btn-outline-danger text-nowrap my-1 my-sm-0 mx-1">
                     Add to Cart
                   </button>
                 </div>
