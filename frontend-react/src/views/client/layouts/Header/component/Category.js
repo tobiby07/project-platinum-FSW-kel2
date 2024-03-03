@@ -6,7 +6,6 @@ import sepatuWanita from "../../../../image/sepatu-wanita.png";
 import league from "../../../../image/league.png";
 import vans from "../../../../image/vans.png";
 import converse from "../../../../image/converse.png";
-import { Container } from "react-bootstrap";
 
 const Conten = ({ picture, alt, value }) => {
   return (

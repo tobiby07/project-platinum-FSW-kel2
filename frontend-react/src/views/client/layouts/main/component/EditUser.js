@@ -4,10 +4,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import Button from '../../../../auth/components/button';
 import logo from '../../../../image/logo.png';
-import register1 from '../../../../image/register-pic1.png';
-import register2 from '../../../../image/register-pic2.png';
 import InputForm from '../../../../auth/components/input-form';
 import SelectForm from '../../../../auth/components/select-form';
+import axiosObject from '../../../../../services/axiosUrl';
 
 const idUser =  localStorage.getItem('id');
 
@@ -35,7 +34,7 @@ const EditUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/api/users/${idUser}`);
+        const response = await axiosObject.get(`/api/users/${idUser}`);
         const userData = response.data;
         setName(userData.name);
         setEmail(userData.email);
@@ -59,27 +58,28 @@ const EditUser = () => {
 
   const fetchResource = async (url, setter) => {
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(`https://tobiby07.github.io/api-wilayah-indonesia/api${url}`);
       setter(response.data);
     } catch (error) {
       console.log('error');
     }
   };
 
+
   const fetchProvinces = async () => {
-    await fetchResource('https://tobiby07.github.io/api-wilayah-indonesia/api/provinces.json', setProvinces);
+    await fetchResource('/provinces.json', setProvinces);
   };
 
   const fetchRegencies = async (provinceId) => {
-    await fetchResource(`https://tobiby07.github.io/api-wilayah-indonesia/api/regencies/${provinceId}.json`, setRegencies);
+    await fetchResource(`/regencies/${provinceId}.json`, setRegencies);
   };
 
   const fetchDistricts = async (regencyId) => {
-    await fetchResource(`https://tobiby07.github.io/api-wilayah-indonesia/api/districts/${regencyId}.json`, setDistricts);
+    await fetchResource(`/districts/${regencyId}.json`, setDistricts);
   };
 
   const fetchVillages = async (districtId) => {
-    await fetchResource(`https://tobiby07.github.io/api-wilayah-indonesia/api/villages/${districtId}.json`, setVillages);
+    await fetchResource(`/villages/${districtId}.json`, setVillages);
   };
 
   const handleProvinceChange = (e) => {
@@ -120,7 +120,7 @@ const EditUser = () => {
     const villageObject = villages.find(item => item.id === selectedVillage);
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3001/api/users/${idUser}`, {
+      await axiosObject.patch(`/api/users/${idUser}`, {
         name,
         email,
         password,

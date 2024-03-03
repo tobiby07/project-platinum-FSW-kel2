@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
-import axios from "axios";
 const ModalDelete = ({ ...props }) => {
     return (
         <div className="lg:ml-40 ml-0 lg:space-x-8">

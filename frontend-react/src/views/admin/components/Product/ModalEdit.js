@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
-import axios from "axios";
+import axiosObject from '../../../../services/axiosUrl';
 const ModalEdit = ({ ...props }) => {
     const [category, setCategory] = useState([]);
     const [brand, setBrand] = useState([]);
@@ -24,7 +24,7 @@ const ModalEdit = ({ ...props }) => {
 
     const getCategory = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/categories')
+            const response = await axiosObject.get('/api/categories')
             setCategory(response.data)
             setLoading(false)
         } catch (error) {
@@ -35,7 +35,7 @@ const ModalEdit = ({ ...props }) => {
 
     const getBrand = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/brands')
+            const response = await axiosObject.get('/api/brands')
             setBrand(response.data)
             setLoading(false)
         } catch (error) {
@@ -54,7 +54,7 @@ const ModalEdit = ({ ...props }) => {
         formData.append('categoryId', categoryId)
         formData.append('brandId', brandId)
         try {
-            await axios.patch(`http://localhost:3001/api/products/${props.product.id}`, formData, {
+            await axiosObject.patch(`/api/products/${props.product.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'role': localStorage.getItem('role')

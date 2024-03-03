@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Button from './components/button';
 import InputForm from './components/input-form';
+import axiosObject from '../../services/axiosUrl';
 
 const AddAdmin = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('admin');
   const [error, setError] = useState('');
+  const [role, setRole] = useState('admin');
   const navigate = useNavigate();
 
   const createUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/api/users", {
+      const response = await axiosObject.post("/api/users", {
         name,
         email,
         password,

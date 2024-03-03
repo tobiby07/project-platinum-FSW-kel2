@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
-import axios from "axios";
+import axiosObject from '../../../../services/axiosUrl';
 const BtnCreate = ({ setRefresh }) => {
     const [showModal, setShowModal] = useState(false);
     const [brandName, setBrandName] = useState('')
@@ -19,7 +19,7 @@ const BtnCreate = ({ setRefresh }) => {
         formData.append('brandImage', brandImage)
         formData.append('name', brandName)
         try {
-            await axios.post("http://localhost:3001/api/brands", formData, {
+            await axiosObject.post("/api/brands", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'role': localStorage.getItem('role')

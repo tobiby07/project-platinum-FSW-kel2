@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import axios from "axios";
+import axiosObject from '../../../../services/axiosUrl';
 const ModalEdit = ({ ...props }) => {
     const [showModalEdit, setShowModal] = useState(false);
     const [brandName, setBrandName] = useState(props.brand.name)
@@ -19,7 +20,7 @@ const ModalEdit = ({ ...props }) => {
         formData.append('brandImage', brandImage)
         formData.append('name', brandName)
         try {
-            await axios.patch(`http://localhost:3001/api/brands/${props.brand.id}`, formData, {
+            await axiosObject.patch(`/api/brands/${props.brand.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'role': localStorage.getItem('role')

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import axiosObject from "../../../../services/axiosUrl";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -8,7 +8,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/products");
+        const response = await axiosObject.get("/api/products");
         const randomProducts = getRandomProducts(response.data, 8);
         setProducts(randomProducts);
       } catch (error) {
@@ -33,7 +33,7 @@ const ProductList = () => {
             <div className="card h-100">
               <Link to={`/products/${product.id}`}>
                 <img
-                  src={`http://localhost:3001/images/${product.productImage}`}
+                  src={`${process.env.REACT_APP_API_HOST}/images/${product.productImage}`}
                   className="card-img-top"
                   alt={product.productName}
                 />

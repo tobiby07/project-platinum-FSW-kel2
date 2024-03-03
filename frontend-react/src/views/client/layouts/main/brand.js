@@ -10,7 +10,7 @@ const BrandMain = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/products");
+        const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/products`);
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -49,7 +49,7 @@ const BrandMain = () => {
               <Link to={`/products/${product.id}`}>
                 {/* {product.productImage ? ( */}
                 <img
-                  src={`http://localhost:3001/images/${product.productImage}`}
+                  src={`${process.env.REACT_APP_API_HOST}/images/${product.productImage}`}
                   alt={product.productName}
                   className="card-img-top"
                 />

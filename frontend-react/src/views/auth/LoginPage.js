@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import InputForm from './components/input-form';
 import Button from './components/button';
 import logo from '../image/logo.png'
 import pictureLogin from '../image/login-pic.png'
+import axiosObject from '../../services/axiosUrl';
+
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/auth', {
+      const response = await axiosObject.post('/auth', {
         email,
         password
       });

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
-import axios from "axios";
+import axiosObject from '../../../../services/axiosUrl';
 const ModalEdit = ({ ...props }) => {
     const [showModalEdit, setShowModal] = useState(false);
     const [customerId, setCustomerId] = useState(props.customer.customerId)
@@ -18,7 +18,7 @@ const ModalEdit = ({ ...props }) => {
         console.log(props.customer.id)
         try {
             console.log('customer', props.customer.id)
-            await axios.patch(`http://localhost:3001/api/users/${props.customer.id}`, {
+            await axiosObject.patch(`/api/users/${props.customer.id}`, {
                 name: customerName,
             }, {
                 headers: {

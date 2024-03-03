@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import axios from "axios";
+import axiosObject from '../../../../services/axiosUrl';
 const BtnCreate = ({ setRefresh }) => {
     const [showModal, setShowModal] = useState(false);
     const [customerName, setCustomerName] = useState('')
@@ -22,7 +23,7 @@ const BtnCreate = ({ setRefresh }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post("http://localhost:3001/api/users", {
+            await axiosObject.post("/api/users", {
                 name: customerName
             })
             setCustomerName('')

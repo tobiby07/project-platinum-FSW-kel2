@@ -3,7 +3,7 @@ import ModalDelete from './ModalDelete'
 import ModalEdit from './ModalEdit'
 import { Modal } from 'react-bootstrap';
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import axios from "axios";
+import axiosObject from '../../../../services/axiosUrl';
 function DataList({ ...props }) {
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
@@ -25,7 +25,7 @@ function DataList({ ...props }) {
     const handleDelete = async (e) => {
         e.preventDefault();
         try {
-            await axios.delete(`http://localhost:3001/api/categories/${props.customer.id}`, {
+            await axiosObject.delete(`/api/categories/${props.customer.id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'role': localStorage.getItem('role')

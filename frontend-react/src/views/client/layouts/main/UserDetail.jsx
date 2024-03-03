@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Modal } from "react-bootstrap";
 import EditUser from "./component/EditUser";
 import Button from "../../../auth/components/button";
 import profilePic from "../../../image/profile-pic.png";
+import axiosObject from "../../../../services/axiosUrl";
 
 const UserDetail = () => {
   const [userData, setUserData] = useState(null);
@@ -13,9 +13,7 @@ const UserDetail = () => {
     const fetchData = async () => {
       try {
         const idUser = localStorage.getItem("id");
-        const response = await axios.get(
-          `http://localhost:3001/api/users/${idUser}`
-        );
+        const response = await axiosObject.get(`/api/users/${idUser}`);
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);

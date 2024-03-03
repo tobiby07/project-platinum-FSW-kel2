@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
+import axiosObject from "../../../../services/axiosUrl";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -10,8 +10,8 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3001/api/products/${id}`
+        const response = await axiosObject.get(
+          `/api/products/${id}`
         );
         setProduct(response.data);
       } catch (error) {
@@ -34,7 +34,7 @@ const ProductDetail = () => {
           <img
             className="img-responsive"
             width="100%"
-            src={`http://localhost:3001/images/${product.productImage}`}
+            src={`${process.env.REACT_APP_API_HOST}/images/${product.productImage}`}
             alt={product.productName}
           />
         </div>
