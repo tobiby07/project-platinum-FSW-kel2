@@ -1,21 +1,28 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
+// admin
 import Admin from './views/admin/pages/dashboard';
 import Brand from './views/admin/pages/brands';
 import Product from './views/admin/pages/products';
 import Category from './views/admin/pages/categories';
-import LoginPage from './views/auth/LoginPage';
-import AddUser from './views/auth/RegisterUser';
-import HomePage from './views/client/HomePage';
-import AddAdmin from './views/auth/RegisterAdmin';
-import DetailUSer from './views/client/DetailUser';
 import Customer from './views/admin/pages/customers';
 import User from './views/admin/pages/users';
+
+// auth
+import AddAdmin from './views/auth/RegisterAdmin';
+import AddUser from './views/auth/RegisterUser';
+import LoginPage from './views/auth/LoginPage';
+
+// client
+import HomePage from './views/client/HomePage';
+import DetailUSer from './views/client/DetailUser';
 import CartPage from './views/client/CartPage';
 import BrandPage from './views/client/BrandPage';
 import DetailProduct from './views/client/detailProduct';
+
 import styles from './App.module.css'
-const idUser = await localStorage.getItem('id');
+import SreachPage from './views/client/SreachResultPage';
+const idUser = localStorage.getItem('id');
 
 
 function App() {
@@ -33,6 +40,7 @@ function App() {
           {/* produtcs Route */}
           <Route path={`/product/:brand`} element={<BrandPage />} />
           <Route path={`/products/:id`} element={<DetailProduct />} />
+          <Route path={`/search/:query`} element={<SreachPage/>} />
           {/* Cart Route */}
           <Route path='/cart' element={<CartPage />} />
 
