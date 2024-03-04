@@ -23,7 +23,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosObject.post('/auth', {
+      const response = await axiosObject.post(`/auth`, {
         email,
         password
       });
