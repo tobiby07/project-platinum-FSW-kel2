@@ -78,10 +78,10 @@ const UserController = {
     }
     const existingUser = await Users.findOne({ where: { email } });
     if (existingUser) {
-      console.log("sudah ada");
+      // console.log("sudah ada");
       return res.status(422).json({ error: 'User already exists' });
     }
-    console.log("sudah tidak ada");
+    // console.log("sudah tidak ada");
     try {
       const address = await Address.create({ province, regency, district, village });
       const user = await Users.create({ name, email, password: hash, phoneNumber, addressId: address.id, role });

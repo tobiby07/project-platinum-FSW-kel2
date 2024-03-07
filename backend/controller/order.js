@@ -1,4 +1,4 @@
-const { Order, OrderItem, Product, User } = require('../models');
+const { Order, OrderItem, Product, User, CartItem } = require('../models');
 const OrderController = {
   // -------- ORDER CONTROLLER ----------
   // Get all Orders
@@ -55,6 +55,15 @@ const OrderController = {
           })
         })
       }
+      //Delete Chart Item
+      await CartItem.destroy({
+        where: { userId: userId }
+      });
+
+      //Delete Chart Item
+      await CartItem.destroy({
+        where: { userId: userId }
+      });
       res.status(201).json(result);
     } catch (error) {
       res.status(400).json({ error: error.message });
