@@ -9,18 +9,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      cartId: {
-        type: Sequelize.INTEGER
+      // diganti dengan userid
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {model: "Users", key:"id"}
       },
       productId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: "Products", key:"id" }
       },
       quantity: {
         type: Sequelize.INTEGER
       },
-      price: {
-        type: Sequelize.INTEGER
-      },
+      // price nya tidak usah, nanti kita ambil dari  Products
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

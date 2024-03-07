@@ -1,4 +1,5 @@
 import Navbar from "./layouts/Header/component/Navbar"
+import Footer from "./layouts/footer/Footer"
 import MainCartPage from "./layouts/main/CartPage"
 
 const CartPage = () => {
@@ -6,6 +7,7 @@ const CartPage = () => {
         <div className="">
             <Navbar/>
             <MainCartPage/>
+            <Footer/>
         </div>
     )
 }

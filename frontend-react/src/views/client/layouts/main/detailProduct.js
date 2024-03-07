@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FiShoppingCart } from "react-icons/fi";
 import axiosObject from "../../../../services/axiosUrl";
+import AddToCartButton from "./component/addToCart";
+
+
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -10,9 +12,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axiosObject.get(
-          `/api/products/${id}`
-        );
+        const response = await axiosObject.get(`/api/products/${id}`);
         setProduct(response.data);
       } catch (error) {
         console.error("Error fetching product:", error);
@@ -21,6 +21,8 @@ const ProductDetail = () => {
 
     fetchProduct();
   }, [id]);
+
+ 
 
   if (!product) {
     return <div>Loading...</div>;
@@ -43,10 +45,7 @@ const ProductDetail = () => {
           <h5 className="p-2">Rp. {product.price.toLocaleString()}</h5>
           <p className="p-2">{product.productDescription}</p>
           <div className="add-to-cart-btn-stock m-2">
-            <button className="btn btn-danger py-2 px-3">
-              <FiShoppingCart size={24} />
-              <span className="px-3">Add to cart</span>
-            </button>
+          <AddToCartButton productId={product.id} />
             <span className="p-2 mx-2">Stock: {product.stock}</span>
           </div>
         </div>

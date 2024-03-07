@@ -12,6 +12,8 @@ const { categoryRoute } = require('./routes/category');
 const { orderItemRoute } = require('./routes/orderItem');
 const { orderRoute } = require('./routes/order');
 
+const { cartItemRoute } = require('./routes/cartItem');
+
 app.use(express.json());
 app.use(cors({
   origin: '*',
@@ -21,11 +23,12 @@ app.use(methodOverride("_method"));
 app.use(cookieParser())
 app.use(express.static("public"));
 
-app.use('/api/users', usersRoute)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+app.use('/api/users', usersRoute)
 app.use('/auth', authRouter);
 app.use('/api/brands', brandRoute)
 app.use('/api/products', productRoute)
@@ -33,6 +36,8 @@ app.use('/api/categories', categoryRoute)
 app.use('/api/order-items', orderItemRoute)
 app.use('/api/order', orderRoute)
 app.use('/images', express.static('images'))
+app.use('/api/cartItem', cartItemRoute)
+
 app.listen(port, () => {
   console.log(`app running at http://localhost:${port}`)
 })

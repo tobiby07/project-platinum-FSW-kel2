@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axiosObject from "../../../../services/axiosUrl";
+import AddToCartButton from "./component/addToCart";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -59,9 +60,7 @@ const ProductList = () => {
                   >
                     Detail
                   </Link>
-                  <button className="btn btn-outline-danger text-nowrap my-1 my-sm-0 mx-1">
-                    Add to Cart
-                  </button>
+          <AddToCartButton productId={product.id} />
                 </div>
               </div>
             </div>

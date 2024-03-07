@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import AddToCartButton from "./component/addToCart";
 
 const BrandMain = () => {
   const [products, setProducts] = useState([]);
@@ -74,43 +75,13 @@ const BrandMain = () => {
                   <Link to={`/products/${product.id}`} className="btn btn-dark my-1 my-sm-0 mx-1">
                     Detail
                   </Link>
-                  <button className="btn btn-outline-danger text-nowrap my-1 my-sm-0 mx-1">
-                    Add to Cart
-                  </button>
+                  <AddToCartButton productId={product.id} />
                 </div>
               </div>
             </div>
           </div>
         ))}
-      </div>
-
-      {/* <div>
-                <h1>{brandName}</h1>
-                <ul>
-                    {filteredProducts.map(product => (
-                        <li key={product.id}>
-                            <Link to={`/products/${product.id}`}><h2>{product.productName}</h2></Link>
-                            <p>{product.productDescription}</p>
-                            <p>Price: {product.price}</p>
-                            <p>{product.productImage ? <img src={`http://localhost:3001/images/${product.productImage}`} alt="product" width="200px" className='rounded m-2' /> : ''}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div> */}
-
-      {/* <div className="card" style={{ width: "18rem" }}>
-                <img className="card-img-top" src="..." alt="Card image cap" />
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                        <p className="card-text">
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
-                        </p>
-                    <a href="#" className="btn btn-primary">
-                    Go somewhere
-                    </a>
-                </div>
-            </div> */}
+      </div> 
     </div>
   );
 };

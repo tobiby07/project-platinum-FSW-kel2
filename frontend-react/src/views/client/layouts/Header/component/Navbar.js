@@ -1,20 +1,33 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import React, { useState , useEffect} from "react";
 import logo from "../../../../image/logo.png";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FaRegUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
+import axiosObject from "../../../../../services/axiosUrl";
 
 const userName = localStorage.getItem("name");
 const idUser = localStorage.getItem("id");
 
-console.log(userName);
-console.log(idUser);
-
 const TopNav = () => {
   const history = useNavigate();
   const [query, setQuery] = useState("");
+  const [cartItemCount, setCartItemCount] = useState(0);
+
+  useEffect(() => {
+    const fetchCartItemCount = async () => {
+      try {
+        const response = await axiosObject.get(`/api/cartItem/${idUser}`); 
+        const itemCount = response.data.length;
+        setCartItemCount(itemCount);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
+
+    fetchCartItemCount(); 
+  }, [idUser]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -54,7 +67,7 @@ const TopNav = () => {
             <ul className="nav justify-content-end">
               <li className="nav-item">
                 <a className="nav-link" href="/cart">
-                  <AiOutlineShoppingCart size={25} className="mx-2" /> Cart (10)
+                  <AiOutlineShoppingCart size={25} className="mx-2" /> Cart ( {cartItemCount} )
                 </a>
               </li>
               <li className="nav-item ">
