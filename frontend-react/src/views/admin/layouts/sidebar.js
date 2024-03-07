@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, } from 'react-router-dom'
-import { Speedometer2, Boxes, People, BoxSeam, PersonCircle, XLg, Triangle, Bookmarks } from 'react-bootstrap-icons'
+import { Speedometer2, Boxes, People, BoxSeam, PersonCircle, XLg, Triangle, Bookmarks, Basket } from 'react-bootstrap-icons'
 import { useAdminLayout } from '../adminLayoutContext';
 function Sidebar() {
     // const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +10,11 @@ function Sidebar() {
             path: "/admin",
             name: "Dashboard",
             icon: <Speedometer2 />
+        },
+        {
+            path: "/admin/orders",
+            name: "Orders",
+            icon: <Basket />
         },
         {
             path: "/admin/categories",

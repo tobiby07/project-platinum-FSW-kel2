@@ -7,6 +7,7 @@ import Product from './views/admin/pages/products';
 import Category from './views/admin/pages/categories';
 import Customer from './views/admin/pages/customers';
 import User from './views/admin/pages/users';
+import Order from './views/admin/pages/orders';
 
 // auth
 import AddAdmin from './views/auth/RegisterAdmin';
@@ -40,7 +41,7 @@ function App() {
           {/* produtcs Route */}
           <Route path={`/product/:brand`} element={<BrandPage />} />
           <Route path={`/products/:id`} element={<DetailProduct />} />
-          <Route path={`/search/:query`} element={<SreachPage/>} />
+          <Route path={`/search/:query`} element={<SreachPage />} />
           {/* Cart Route */}
           <Route path='/cart' element={<CartPage />} />
 
@@ -52,6 +53,7 @@ function App() {
           <Route path="/admin/categories" element={<Category />} />
           <Route path="/admin/customers" element={<Customer />} />
           <Route path="/admin/users" element={<User />} />
+          <Route path="/admin/orders" element={<Order />} />
         </Routes>
       </Router>
     </div>
