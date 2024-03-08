@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosObject from "../../../../../services/axiosUrl";
-
+import numeral from 'numeral';
 const idUser = localStorage.getItem("id");
 
 const Summary = ({ total, onCheckout, disabled }) => {
@@ -30,18 +30,18 @@ const Summary = ({ total, onCheckout, disabled }) => {
     }
   };
 
-    return (
-      <div className="card mb-4">
-        <div className="card-header py-3">
-          <h5 className="mb-0">Summary</h5>
-        </div>
-        <div className="card-body">
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Products
-              <span>Rp.{total}</span>
-            </li>
-            <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+  return (
+    <div className="card mb-4">
+      <div className="card-header py-3">
+        <h5 className="mb-0">Summary</h5>
+      </div>
+      <div className="card-body">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+            Products
+            <span>Rp.{numeral(total).format('0,0')}</span>
+          </li>
+          <li className="list-group-item d-flex justify-content-between align-items-center px-0">
             Shipping Address
             {address && (
               <span>
@@ -49,24 +49,24 @@ const Summary = ({ total, onCheckout, disabled }) => {
               </span>
             )}
           </li>
-            <li className="list-group-item d-flex justify-content-between align-items-center px-0">
-              Shipping
-              <span>Gratis</span>
-            </li>
-            <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-              <div>
-                <strong>Total amount</strong>
-                <strong><p className="mb-0">(including VAT)</p></strong>
-              </div>
-              <span><strong>Rp.{total} </strong></span>
-            </li>
-          </ul>
-          <button type="button" className="btn btn-danger btn-lg btn-block" onClick={handleCheckout} disabled={disabled} >
-            Chekout
-          </button>
-        </div>
+          <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+            Shipping
+            <span>Gratis</span>
+          </li>
+          <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+            <div>
+              <strong>Total amount</strong>
+              <strong><p className="mb-0">(including VAT)</p></strong>
+            </div>
+            <span><strong>Rp. {numeral(total).format('0,0')}</strong></span>
+          </li>
+        </ul>
+        <button type="button" className="btn btn-danger btn-lg btn-block" onClick={handleCheckout} disabled={disabled} >
+          Chekout
+        </button>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export default Summary
+export default Summary

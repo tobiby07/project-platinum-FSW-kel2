@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import CheckoutSuccessModal from './chekoutSuccess';
 
 
-
 const MainCartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const idUser = localStorage.getItem('id');
@@ -35,7 +34,7 @@ const MainCartPage = () => {
     setTotal(newTotal);
     setFormattedTotal(newTotal.toLocaleString('id-ID', { maximumFractionDigits: 2 }));
   }, [cartItems]);
-  
+
 
   const handleDeleteCartItem = (deletedItemId) => {
     setCartItems(cartItems.filter(item => item.id !== deletedItemId));
@@ -74,7 +73,7 @@ const MainCartPage = () => {
       }
     }
   };
- 
+
   const handleCloseModal = () => {
     setShowCheckoutModal(false);
   };
