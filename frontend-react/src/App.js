@@ -21,6 +21,7 @@ import CartPage from './views/client/CartPage';
 import BrandPage from './views/client/BrandPage';
 import DetailProduct from './views/client/detailProduct';
 
+import ScrollToTop from './views/client/layouts/Header/component/ScrollToTop';
 import styles from './App.module.css'
 import SreachPage from './views/client/SreachResultPage';
 const idUser = localStorage.getItem('id');
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className={styles.body}>
       <Router>
+        <ScrollToTop />
         <Routes>
           {/* user route */}
           <Route path='/' element={< LoginPage />} />

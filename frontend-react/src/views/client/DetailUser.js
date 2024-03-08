@@ -4,11 +4,9 @@ import Footer from "./layouts/footer/Footer.js";
 
 const DetailUSer = () => {
   return (
-    <div className="overflow-x-hidden">
+    <div className="d-flex flex-column" style={{minHeight: "100vh"}}>
       <Navbar />
-      <div className="mb-5">
         <UserDetail />
-      </div>
       <Footer />
     </div>
   );

@@ -92,7 +92,7 @@ const SearchPage = () => {
 
 
   return (
-    <div className="">
+    <div className="d-flex flex-column" style={{minHeight: "100vh"}}>
       <Navbar  />
       <Search products={products} />
       <Footer />

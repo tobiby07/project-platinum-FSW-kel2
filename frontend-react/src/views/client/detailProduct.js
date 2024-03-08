@@ -4,7 +4,7 @@ import ProductDetail from "./layouts/main/detailProduct";
 
 const DetailProduct = () => {
   return (
-    <div>
+    <div className="d-flex flex-column" style={{minHeight: "100vh"}}>
       <Navbar />
       <ProductDetail />
       <Footer />

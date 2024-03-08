@@ -4,7 +4,7 @@ import MainCartPage from "./layouts/main/CartPage"
 
 const CartPage = () => {
     return (
-        <div className="">
+        <div className="d-flex flex-column" style={{minHeight: "100vh"}}>
             <Navbar/>
             <MainCartPage/>
             <Footer/>
