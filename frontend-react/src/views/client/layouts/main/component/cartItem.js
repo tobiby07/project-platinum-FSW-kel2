@@ -74,7 +74,7 @@ const CartItem = ({ item, onDeleteCartItem, onUpdateCartItem }) => {
               <FaPlus size={15} />
             </button>
           </div>
-          <p className="text-start text-md-center"><strong>Rp{totalPrice.toFixed(2)}</strong></p>
+          <p className="text-start text-md-center"><strong>Rp. {totalPrice.toLocaleString('id-ID', { maximumFractionDigits: 2 })}</strong></p>
         </div>
       </div>
     );

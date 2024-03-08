@@ -1,6 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import AddToCartButton from "./component/addToCart";
+import { useParams } from "react-router-dom";
+
+import adidas from "../../../image/adidas.png";
+import converse from "../../../image/converse.png";
+import league from "../../../image/league.png";
+import nb from "../../../image/nb.png";
+import nike from "../../../image/nike.png";
+import sepatupria from "../../../image/sepatu-pria.png";
+import sepatuwanita from "../../../image/sepatu-wanita.png";
+import vans from "../../../image/vans.png";
+import logo from "../../../image/logo.png";
+import CardProduct from "./component/cardProduct";
 
 const BrandMain = () => {
   const [products, setProducts] = useState([]);
@@ -36,52 +46,58 @@ const BrandMain = () => {
   }
 
   const brandName = params.brand;
-  const filteredProducts = products.filter(
-    (product) => product.Brand.name === brandName
-  );
+  const filteredProducts = products.filter((product) => product.Brand.name === brandName);
+  const brandNames = brandName.toUpperCase();
+  let brandLogo;
+  switch (brandName.toLowerCase()) {
+    case "adidas":
+      brandLogo = adidas;
+      break;
+    case "nike":
+      brandLogo = nike;
+      break;
+    case "league":
+      brandLogo = league;
+      break;
+    case "new balance (nb)":
+      brandLogo = nb;
+      break;
+    case "vans":
+      brandLogo = vans;
+      break;
+    case "converse":
+      brandLogo = converse;
+      break;
+    case "other man":
+      brandLogo = sepatupria;
+      break;
+    case "other woman":
+      brandLogo = sepatuwanita;
+      break;
+    default:
+      brandLogo = null;
+  }
 
   return (
     <div className="container my-4">
-      <h1 className="mb-3 fw-semibold">{brandName}</h1>
+      <div className="border rounded p-3">
+        <div className="row align-items-center">
+          <div className="col text-center">{brandLogo && <img src={brandLogo} alt="Brand Logo" style={{ width: "75%", height: "auto" }} />}</div>
+          <div className="col text-center">
+            <h4 className="fw-bold mb-0"> {brandNames} </h4>
+            <h4 className="fw-bold mb-0">COLABORATION</h4>
+          </div>
+          <div className="col text-center">
+            <img src={logo} alt="Brand Logo" style={{ width: "60%", height: "auto" }} />
+          </div>
+        </div>
+      </div>
+
       <div className="row">
         {filteredProducts.map((product) => (
-          <div key={product.id} className="col-6 g-1 col-md-4 col-lg-3 g-sm-4">
-            <div className="card h-100">
-              <Link to={`/products/${product.id}`}>
-                {/* {product.productImage ? ( */}
-                <img
-                  src={`${process.env.REACT_APP_API_HOST}/images/${product.productImage}`}
-                  alt={product.productName}
-                  className="card-img-top"
-                />
-                {/* ) : ( */}
-                {/* "" */}
-                {/* )} */}
-              </Link>
-              <div className="card-body">
-                <h6 className="card-title fw-semibold">
-                  {product.productName}
-                </h6>
-                <p className="card-text text-secondary">
-                  {product.ProductCategory.categoryName}
-                </p>
-                {/* <p>{product.productDescription}</p> */}
-                <p className="card-text">
-                  Rp. {product.price.toLocaleString()}
-                </p>
-              </div>
-              <div className="card-footer">
-                <div className="d-flex justify-content-center justify-content-sm-between align-items-center flex-wrap flex-sm-nowrap">
-                  <Link to={`/products/${product.id}`} className="btn btn-dark my-1 my-sm-0 mx-1">
-                    Detail
-                  </Link>
-                  <AddToCartButton productId={product.id} />
-                </div>
-              </div>
-            </div>
-          </div>
+          <CardProduct key={product.id} product={product} />
         ))}
-      </div> 
+      </div>
     </div>
   );
 };

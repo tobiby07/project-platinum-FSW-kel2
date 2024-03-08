@@ -17,10 +17,11 @@ const AddToCartButton = ({ productId }) => {
       };
     
     return(
-        <button className="btn btn-danger py-2 px-3" onClick={addToCart}>
-              <FiShoppingCart size={24} />
-              <span className="px-3">Add to cart</span>
-        </button>
+      <button className="btn btn-outline-danger text-nowrap my-1 my-sm-0 mx-1 d-flex align-items-center" onClick={addToCart}>
+      <FiShoppingCart size={24} />
+      <span className="px-1 px-sm-3">Add to cart</span>
+    </button>
+    
     )
 }
 

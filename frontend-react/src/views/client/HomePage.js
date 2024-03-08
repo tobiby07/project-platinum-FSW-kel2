@@ -5,7 +5,6 @@ import Navbar from "./layouts/Header/component/Navbar";
 
 const HomePage = () => {
   return (
-    // className="overflow-x-hidden" style={{display: "flex", flexDirection: "column", minHeight: "100vh"}}
     <div className="d-flex flex-column" style={{minHeight: "100vh"}}>
       <Navbar/>
       <HeaderHome />

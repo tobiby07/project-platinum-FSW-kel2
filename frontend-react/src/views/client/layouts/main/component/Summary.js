@@ -3,7 +3,7 @@ import axiosObject from "../../../../../services/axiosUrl";
 
 const idUser = localStorage.getItem("id");
 
-const Summary = ({ total, onCheckout }) => {
+const Summary = ({ total, onCheckout, disabled }) => {
   const [address, setAddress] = useState()
 
   useEffect(() => {
@@ -58,11 +58,11 @@ const Summary = ({ total, onCheckout }) => {
                 <strong>Total amount</strong>
                 <strong><p className="mb-0">(including VAT)</p></strong>
               </div>
-              <span><strong>Rp.{total}</strong></span>
+              <span><strong>Rp.{total} </strong></span>
             </li>
           </ul>
-          <button type="button" className="btn btn-primary btn-lg btn-block" onClick={handleCheckout}>
-            Go to checkout
+          <button type="button" className="btn btn-danger btn-lg btn-block" onClick={handleCheckout} disabled={disabled} >
+            Chekout
           </button>
         </div>
       </div>

@@ -56,7 +56,7 @@ const TopNav = () => {
           <div className="col-md-5 my-auto">
             <form onSubmit={handleSearch}>
               <div className="input-group">
-                <input type="search" placeholder="Search your product" className="form-control" value={query} onChange={(e) => setQuery(e.target.value)} />
+                <input type="search" placeholder="Search your product" className="form-control" value={query} onChange={(e) => setQuery(e.target.value)} required />
                 <button className="btn bg-danger" type="submit">
                   <PiMagnifyingGlassBold size={20} color="white" />
                 </button>
