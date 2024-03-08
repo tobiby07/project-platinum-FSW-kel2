@@ -1,4 +1,4 @@
-const { Order, OrderItem, Product, User, CartItem } = require('../models');
+const { Order, OrderItem, Product, Users, CartItem } = require('../models');
 const OrderController = {
   // -------- ORDER CONTROLLER ----------
   // Get all Orders
@@ -8,7 +8,9 @@ const OrderController = {
         include: [{
           model: OrderItem,
           include: [{ model: Product }],
-        }]
+        },
+        { model: Users },
+        ]
       });
       res.json(result);
     } catch (error) {

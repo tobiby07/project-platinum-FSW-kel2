@@ -11,8 +11,13 @@ const { productRoute } = require('./routes/products');
 const { categoryRoute } = require('./routes/category');
 const { orderItemRoute } = require('./routes/orderItem');
 const { orderRoute } = require('./routes/order');
-
 const { cartItemRoute } = require('./routes/cartItem');
+//Swagger dengan YAML
+const swaggerUiExpress = require('swagger-ui-express')
+const fs = require('fs')
+const YAML = require('yaml')
+const swaggerTamlFile = fs.readFileSync('./documentation/swagger.yaml', 'utf8')
+const swaggerYamlParsed = YAML.parse(swaggerTamlFile)
 
 app.use(express.json());
 app.use(cors({
@@ -37,6 +42,7 @@ app.use('/api/order-items', orderItemRoute)
 app.use('/api/order', orderRoute)
 app.use('/images', express.static('images'))
 app.use('/api/cartItem', cartItemRoute)
+app.use('/api/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerYamlParsed))
 
 app.listen(port, () => {
   console.log(`app running at http://localhost:${port}`)
