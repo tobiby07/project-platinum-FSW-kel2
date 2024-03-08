@@ -7,6 +7,7 @@ import logo from '../../../../image/logo.png';
 import InputForm from '../../../../auth/components/input-form';
 import SelectForm from '../../../../auth/components/select-form';
 import axiosObject from '../../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 
 const idUser =  localStorage.getItem('id');
 
@@ -139,6 +140,8 @@ const EditUser = () => {
       setSelectedDistrict('');
       setSelectedVillage('');
       navigate(`/detail-user/${idUser}`);
+      toast.success("Sukses Edit Akun", {
+        position: "top-center"})
     } catch (error) {
       setError(error.message);
     }

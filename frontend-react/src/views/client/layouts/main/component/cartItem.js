@@ -1,6 +1,7 @@
 import { FaMinus, FaPlus, FaRegTrashAlt } from "react-icons/fa";
 import React, { useState, useEffect } from 'react';
 import axiosObject from "../../../../../services/axiosUrl";
+import { toast } from "react-toastify";
 
 const CartItem = ({ item, onDeleteCartItem, onUpdateCartItem }) => {
     const [quantity, setQuantity] = useState(item.quantity);
@@ -25,8 +26,14 @@ const CartItem = ({ item, onDeleteCartItem, onUpdateCartItem }) => {
       try {
         await axiosObject.delete(`/api/cartItem/${item.id}`);
         onDeleteCartItem(item.id);
+        toast.success("Berhasil Menghapus Produk !", {
+          position: "top-center",
+        });
       } catch (error) {
         console.error('Error deleting cart item:', error);
+        toast.error("Berhasil Menghapus Produk !", {
+          position: "top-center",
+        });
       }
     };
   
