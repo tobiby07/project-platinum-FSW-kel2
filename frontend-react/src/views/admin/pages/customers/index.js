@@ -20,7 +20,6 @@ function Customer() {
     const getProduct = useCallback(async () => {
         try {
             const response = await axios.get('http://localhost:3001/api/users/customers')
-            console.log(response.data)
             setCustomer(response.data)
             setLoading(false)
         } catch (error) {
@@ -44,7 +43,6 @@ function Customer() {
         getProduct();
         setRefresh(false);
     }, [getProduct, refresh])
-    console.log(refresh)
     return (
         <Layout>
             <div className='flex flex-col'>

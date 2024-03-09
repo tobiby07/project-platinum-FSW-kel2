@@ -42,7 +42,6 @@ function Sidebar() {
             icon: <PersonCircle />
         }
     ]
-    console.log("apakah Terbuka? ", isSidebarOpen)
     return (
         <div className={`sidebar-content d-flex justify-content-between flex-column flex-shrink-0 text-white bg-dark`} style={{ width: isSidebarOpen ? "280px" : "50px" }}>
             <div className='sidebar-logo' style={{ display: isSidebarOpen ? "none" : "block" }}>

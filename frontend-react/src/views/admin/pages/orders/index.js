@@ -42,7 +42,6 @@ function Order() {
         getOrder();
         setRefresh(false);
     }, [getOrder, refresh])
-    console.log(order)
     return (
         <Layout>
             <div className='flex flex-col'>

@@ -43,7 +43,6 @@ function Category() {
         getProduct();
         setRefresh(false);
     }, [getProduct, refresh])
-    console.log(refresh)
     return (
         <Layout>
             <div className='flex flex-col'>

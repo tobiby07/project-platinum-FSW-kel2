@@ -38,7 +38,6 @@ function DataList({ ...props }) {
             console.log(error)
         }
     };
-    console.log(props.user)
     return (
         <tr key={props.user.id}>
             <th scope="row">{props.index + 1}</th>
