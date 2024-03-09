@@ -385,6 +385,12 @@ paths:
           required: true
           schema:
             type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Order"
+        required: true
       responses:
         "200":
           description: Successful operation
@@ -581,6 +587,10 @@ components:
           type: string
           description: Order Status
           example: approved
+        orderDetails:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrderItem"
     OrderItem:
       type: object
       properties:
