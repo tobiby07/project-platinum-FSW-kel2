@@ -76,7 +76,6 @@ const OrderController = {
   updateOrder: async (req, res) => {
     const id = req.params.id;
     const { userId, totalPrice, shippingAddress, orderStatus, orderDetails } = req.body;
-    console.log(userId, totalPrice, shippingAddress, orderStatus, orderDetails)
     try {
       const orderUpdate = await Order.findByPk(id);
       if (!orderUpdate) {

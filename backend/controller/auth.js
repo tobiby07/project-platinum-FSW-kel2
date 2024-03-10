@@ -7,7 +7,6 @@ const { jwtExpires } = require('../config/config.js')
 class Auth {
 
     static login = async (req, res) => {
-        console.log(req.body)
         const { email, password } = req.body;
         if (!email || !password) {
             responseSimple(400, "email and password is required", res);

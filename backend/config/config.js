@@ -30,5 +30,6 @@ module.exports =
   },
   "secret": process.env.SECRET_KEY,
   "dbUrl": process.env.DB_URL,
-  "jwtExpires": process.env.JWT_EXPIRES
+  "jwtExpires": process.env.JWT_EXPIRES,
+  "baseUrl": process.env.BASE_URL
 }

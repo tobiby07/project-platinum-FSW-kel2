@@ -20,7 +20,6 @@ describe("Category Controller Testing", () => {
             })
             .expect(400)
             .then((res) => {
-                // console.log(res.body)
                 expect(res.body.message).toEqual('Category name is required')
             })
 

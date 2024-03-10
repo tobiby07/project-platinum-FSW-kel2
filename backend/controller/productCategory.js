@@ -9,7 +9,6 @@ class ProductCategoryController {
             });
             res.json(categories);
         } catch (error) {
-            console.log(error);
             res.status(500).json({ message: 'Failed to retrieve categories' });
         }
     }
@@ -20,7 +19,6 @@ class ProductCategoryController {
             const category = await ProductCategory.findByPk(id);
             res.json(category);
         } catch (error) {
-            console.log(error);
             res.status(500).json({ message: 'Failed to retrieve category' });
         }
     }
@@ -32,14 +30,12 @@ class ProductCategoryController {
         }
         const exist = await ProductCategory.findOne({ where: { categoryName: name } });
         if (exist) {
-            console.log('Category already exists');
             return res.status(400).json({ message: 'Category already exists' });
         }
         try {
             const newCategory = await ProductCategory.create({ categoryName: name });
             res.status(201).json(newCategory);
         } catch (error) {
-            console.log(error);
             res.status(500).json({ message: 'Failed to create category' });
         }
     }

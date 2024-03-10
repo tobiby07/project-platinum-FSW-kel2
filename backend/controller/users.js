@@ -17,7 +17,6 @@ const UserController = {
   },
 
   getCustomers: async (req, res) => {
-    console.log("coba");
     try {
       const users = await Users.findAll({
         where: {
@@ -35,7 +34,6 @@ const UserController = {
   },
 
   getAdmin: async (req, res) => {
-    console.log("coba");
     try {
       const users = await Users.findAll({
         where: {
@@ -43,9 +41,7 @@ const UserController = {
             [Op.eq]: "admin"
           }
         },
-        // include: Address,
       });
-      console.log('coba lagi')
       res.json(users);
     } catch (error) {
       console.log(error);
@@ -78,10 +74,8 @@ const UserController = {
     }
     const existingUser = await Users.findOne({ where: { email } });
     if (existingUser) {
-      // console.log("sudah ada");
       return res.status(422).json({ error: 'User already exists' });
     }
-    // console.log("sudah tidak ada");
     try {
       const address = await Address.create({ province, regency, district, village });
       const user = await Users.create({ name, email, password: hash, phoneNumber, addressId: address.id, role });
