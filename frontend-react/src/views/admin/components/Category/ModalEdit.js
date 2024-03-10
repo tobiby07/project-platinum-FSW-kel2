@@ -1,24 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
-import axios from "axios";
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 const ModalEdit = ({ ...props }) => {
     const [showModalEdit, setShowModal] = useState(false);
-    const [categoryId, setCategoryId] = useState(props.category.categoryId)
     const [categoryName, setCategoryName] = useState(props.category.categoryName)
-    const handleOpenModal = () => {
+    const handleOpenModal = useCallback(() => {
         setShowModal(true);
-    };
+    }, []);
 
-    const handleCloseModalEdit = () => {
+    const handleCloseModalEdit = useCallback(() => {
         props.handleCloseModalEdit();
         setShowModal(false);
-    };
+    }, [props]);
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(props.category.id)
         try {
-            console.log('category', props.category.id)
             await axiosObject.patch(`/api/categories/${props.category.id}`, {
                 name: categoryName,
             }, {
@@ -27,12 +25,13 @@ const ModalEdit = ({ ...props }) => {
                     'role': localStorage.getItem('role')
                 }
             })
+            toast.success("Category Updated Successfully");
             props.setRefresh(true);
             props.handleCloseModalEdit();
             setShowModal(false);
         } catch (error) {
             setShowModal(false);
-            console.log(error);
+            toast.error("Something went wrong");
         }
     }
 
@@ -76,5 +75,4 @@ const ModalEdit = ({ ...props }) => {
         </Modal>
     )
 }
-
 export default ModalEdit

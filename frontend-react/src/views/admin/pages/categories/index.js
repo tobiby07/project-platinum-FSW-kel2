@@ -1,25 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '../..'
-import axios from "axios";
+import axiosObject from "../../../../services/axiosUrl";
 import ButtonCreate from '../../components/Category/BtnCreate';
 import DataList from '../../components/Category/DataList';
 function Category() {
     const [category, setCategory] = useState([])
     const [loading, setLoading] = useState(true)
     const [refresh, setRefresh] = useState(false);
-    const [categoryNameDelete, setCategoryNameDelete] = useState('')
-    const [categoryIdDelete, setCategoryIdDelete] = useState('')
-    const [showModalDelete, setShowModalDelete] = useState(false);
-    const handleOpenModalDelete = () => {
-        setShowModalDelete(true);
-    };
-
-    const handleCloseModalDelete = () => {
-        setShowModalDelete(false);
-    };
     const getProduct = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/categories')
+            const response = await axiosObject.get('/api/categories')
             setCategory(response.data)
             setLoading(false)
         } catch (error) {
@@ -27,18 +17,6 @@ function Category() {
             console.log('error', error)
         }
     }, [])
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.delete(`http://localhost:3001/api/categories/${categoryIdDelete}`)
-            setCategoryNameDelete('')
-            setCategoryIdDelete('')
-            setShowModalDelete(false);
-            setRefresh(true);
-        } catch (error) {
-            console.log(error)
-        }
-    };
     useEffect(() => {
         getProduct();
         setRefresh(false);

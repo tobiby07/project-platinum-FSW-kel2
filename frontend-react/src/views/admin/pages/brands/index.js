@@ -1,28 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '../..'
-import axios from "axios";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import axiosObject from "../../../../services/axiosUrl";
 import ButtonCreate from '../../components/Brand/BtnCreate';
-import { Modal, Button } from 'react-bootstrap';
-import ModalDelete from '../../components/Brand/ModalDelete';
 import DataList from '../../components/Brand/DataList';
 function Brand() {
     const [brand, setBrand] = useState([])
     const [loading, setLoading] = useState(true)
     const [refresh, setRefresh] = useState(false);
-    const [brandNameDelete, setBrandNameDelete] = useState('')
-    const [brandIdDelete, setIdNameDelete] = useState('')
-    const [showModalDelete, setShowModalDelete] = useState(false);
-    const handleOpenModalDelete = () => {
-        setShowModalDelete(true);
-    };
-
-    const handleCloseModalDelete = () => {
-        setShowModalDelete(false);
-    };
     const getBrand = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/brands')
+            const response = await axiosObject.get('/api/brands')
             setBrand(response.data)
             setLoading(false)
         } catch (error) {
@@ -30,18 +17,6 @@ function Brand() {
             console.log('error', error)
         }
     }, [])
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.delete(`http://localhost:3001/api/brands/${brandIdDelete}`)
-            setBrandNameDelete('')
-            setIdNameDelete('')
-            setShowModalDelete(false);
-            setRefresh(true);
-        } catch (error) {
-            console.log(error)
-        }
-    };
     useEffect(() => {
         getBrand();
         setRefresh(false);

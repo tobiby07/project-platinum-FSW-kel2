@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import ModalDelete from './ModalDelete'
 import ModalEdit from './ModalEdit'
 import { Modal } from 'react-bootstrap';
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiTrash2, FiEye } from "react-icons/fi";
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 function DataList({ ...props }) {
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
-    const [customerNameDelete, setProductNameDelete] = useState(props.customer.categoryName);
+    const [customerNameDelete, setProductNameDelete] = useState(props.customer.name);
     const handleOpenModalDelete = () => {
         setShowModalDelete(true);
     };
@@ -25,17 +26,18 @@ function DataList({ ...props }) {
     const handleDelete = async (e) => {
         e.preventDefault();
         try {
-            await axiosObject.delete(`/api/categories/${props.customer.id}`, {
+            await axiosObject.delete(`/api/users/${props.customer.id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'role': localStorage.getItem('role')
                 }
             })
+            toast.success("Custmer Deleted Successfully");
             setProductNameDelete('')
             setShowModalDelete(false);
             props.setRefresh(true);
         } catch (error) {
-            console.log(error)
+            toast.error("Something went wrong");
         }
     };
     return (
@@ -46,7 +48,7 @@ function DataList({ ...props }) {
             <td>{props.customer.phoneNumber}</td>
             <td>{props.customer.Address?.province}</td>
             <td>
-                <FiEdit
+                <FiEye
                     onClick={handleOpenModalEdit}
                     size={20}
                     className="text-blue-950 hover:text-slate-600 transition-all"

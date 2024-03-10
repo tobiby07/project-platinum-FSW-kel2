@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import { Modal, Button } from 'react-bootstrap';
 const ModalDelete = ({ ...props }) => {
     return (

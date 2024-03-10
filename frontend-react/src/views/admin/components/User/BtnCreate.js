@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 const BtnCreate = ({ setRefresh }) => {
     const [showModal, setShowModal] = useState(false);
-    const [customerName, setCustomerName] = useState('')
-    const [phone, setPhone] = useState('')
+    const [adminName, setAdminName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [province, setProvince] = useState('')
-    const [regency, setRegency] = useState('')
-    const [district, setDistrict] = useState('')
-    const [village, setVillage] = useState('')
     const handleOpenModal = () => {
         setShowModal(true);
     };
@@ -23,14 +19,20 @@ const BtnCreate = ({ setRefresh }) => {
         e.preventDefault()
         try {
             await axiosObject.post("/api/users", {
-                name: customerName
+                name: adminName,
+                email: email,
+                password: password,
+                role: 'admin'
             })
-            setCustomerName('')
+            setAdminName('')
+            setEmail('')
+            setPassword('')
+            toast.success("Admin Added Successfully");
             setRefresh(true);
             setShowModal(false);
         } catch (error) {
             setShowModal(false);
-            console.log(error);
+            toast.error("Something went wrong");
         }
     }
     return (
@@ -38,21 +40,49 @@ const BtnCreate = ({ setRefresh }) => {
             <button className='btn btn-primary' onClick={handleOpenModal}>Add</button>
             <Modal show={showModal} onHide={handleCloseModal} onSubmit={handleSubmit}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Customer</Modal.Title>
+                    <Modal.Title>New Admin</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={(() => { })}>
                         <div className="w-full max-w-lg mx-4">
                             <div className="flex flex-wrap -mx-3 mb-6">
                                 <label className="form-label" htmlFor="name">
-                                    Customer Name
+                                    Name
                                 </label>
                                 <input
-                                    name="customerName"
+                                    name="adminName"
                                     required={true}
-                                    value={customerName}
-                                    onChange={(e) => setCustomerName(e.target.value)}
+                                    value={adminName}
+                                    onChange={(e) => setAdminName(e.target.value)}
                                     type={"text"}
+                                    placeholder={""}
+                                    className={`form-control`}
+                                />
+                            </div>
+                            <div className="flex flex-wrap -mx-3 mb-6">
+                                <label className="form-label" htmlFor="email">
+                                    Email
+                                </label>
+                                <input
+                                    name="email"
+                                    required={true}
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    type={"email"}
+                                    placeholder={""}
+                                    className={`form-control`}
+                                />
+                            </div>
+                            <div className="flex flex-wrap -mx-3 mb-6">
+                                <label className="form-label" htmlFor="password">
+                                    Password
+                                </label>
+                                <input
+                                    name="password"
+                                    required={true}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    type={"password"}
                                     placeholder={""}
                                     className={`form-control`}
                                 />

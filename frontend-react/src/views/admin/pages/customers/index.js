@@ -1,25 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '../..'
-import axios from "axios";
-import ButtonCreate from '../../components/Customer/BtnCreate';
+import axiosObject from "../../../../services/axiosUrl";
 import DataList from '../../components/Customer/DataList';
 function Customer() {
     const [customer, setCustomer] = useState([])
     const [loading, setLoading] = useState(true)
     const [refresh, setRefresh] = useState(false);
-    const [customerNameDelete, setCustomerNameDelete] = useState('')
-    const [customerIdDelete, setCustomerIdDelete] = useState('')
-    const [showModalDelete, setShowModalDelete] = useState(false);
-    const handleOpenModalDelete = () => {
-        setShowModalDelete(true);
-    };
-
-    const handleCloseModalDelete = () => {
-        setShowModalDelete(false);
-    };
     const getProduct = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/users/customers')
+            const response = await axiosObject.get('/api/users/customers')
             setCustomer(response.data)
             setLoading(false)
         } catch (error) {
@@ -27,18 +16,6 @@ function Customer() {
             console.log('error', error)
         }
     }, [])
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.delete(`http://localhost:3001/api/cutomers/${customerIdDelete}`)
-            setCustomerNameDelete('')
-            setCustomerIdDelete('')
-            setShowModalDelete(false);
-            setRefresh(true);
-        } catch (error) {
-            console.log(error)
-        }
-    };
     useEffect(() => {
         getProduct();
         setRefresh(false);
@@ -48,9 +25,6 @@ function Customer() {
             <div className='flex flex-col'>
                 <div className='flex flex-col'>
                     <div><h2>Customer</h2></div>
-                    <div className='lg:ml-40 ml-0 lg:space-x-8'>
-                        <ButtonCreate setRefresh={setRefresh} />
-                    </div>
                 </div>
                 <div className='page-content '>
                     <table className="table">

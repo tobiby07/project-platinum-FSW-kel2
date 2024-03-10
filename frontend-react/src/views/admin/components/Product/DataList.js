@@ -4,9 +4,12 @@ import ModalEdit from './ModalEdit'
 import { Modal } from 'react-bootstrap';
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import axiosObject from '../../../../services/axiosUrl';
+import apiUrl from '../../../../config/config';
+import { toast } from "react-toastify";
 function DataList({ ...props }) {
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
+    const url = apiUrl.apiUrl
     const [productNameDelete, setProductNameDelete] = useState(props.product.productName);
     const handleOpenModalDelete = () => {
         setShowModalDelete(true);
@@ -31,18 +34,19 @@ function DataList({ ...props }) {
                     'role': localStorage.getItem('role')
                 }
             })
+            toast.success("Product Deleted Successfully");
             setProductNameDelete('')
             setShowModalDelete(false);
             props.setRefresh(true);
         } catch (error) {
-            console.log(error)
+            toast.error("Something went wrong");
         }
     };
     return (
         <tr key={props.product.id}>
             <th scope="row">{props.index + 1}</th>
             <td>
-                {props.product.productImage ? <img src={`http://localhost:3001/images/${props.product.productImage}`} alt="product" width="50px" className='rounded m-2' /> : ''}
+                {props.product.productImage ? <img src={`${url}/images/${props.product.productImage}`} alt="product" width="50px" className='rounded m-2' /> : ''}
                 {props.product.productName}
             </td>
             <td>{props.product.Brand ? `${props.product.Brand.name}` : 'N/A'}</td>

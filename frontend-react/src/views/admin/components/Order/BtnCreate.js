@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 const BtnCreate = ({ setRefresh }) => {
     const [showModal, setShowModal] = useState(false);
     const [brandName, setBrandName] = useState('')
@@ -25,13 +26,14 @@ const BtnCreate = ({ setRefresh }) => {
                     'role': localStorage.getItem('role')
                 }
             })
+            toast.success("Brand Added Successfully");
             setBrandName('')
             setBrandImage('')
             setRefresh(true);
             setShowModal(false);
         } catch (error) {
             setShowModal(false);
-            console.log(error);
+            toast.error("Something went wrong");
         }
     }
     return (

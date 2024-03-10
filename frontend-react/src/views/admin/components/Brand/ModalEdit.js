@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Modal, Button } from 'react-bootstrap';
-import axios from "axios";
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 const ModalEdit = ({ ...props }) => {
     const [showModalEdit, setShowModal] = useState(false);
     const [brandName, setBrandName] = useState(props.brand.name)
     const [brandImage, setBrandImage] = useState(props.brand.logo ? props.brand.logo : '')
-    const handleOpenModal = () => {
+    const handleOpenModal = useCallback(() => {
         setShowModal(true);
-    };
+    }, []);
 
-    const handleCloseModalEdit = () => {
+    const handleCloseModalEdit = useCallback(() => {
         props.handleCloseModalEdit();
         setShowModal(false);
-    };
+    }, [props]);
     const handleSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData()
@@ -28,10 +28,11 @@ const ModalEdit = ({ ...props }) => {
             })
             props.setRefresh(true);
             props.handleCloseModalEdit();
+            toast.success("Brand Updated Successfully");
             setShowModal(false);
         } catch (error) {
             setShowModal(false);
-            console.log(error);
+            toast.error("Something went wrong");
         }
     }
 
@@ -41,7 +42,7 @@ const ModalEdit = ({ ...props }) => {
         } else {
             handleCloseModalEdit()
         }
-    }, [handleOpenModal, props.showModalEdit, handleCloseModalEdit])
+    }, [props.showModalEdit, handleOpenModal, handleCloseModalEdit])
     return (
         <Modal show={showModalEdit} onHide={handleCloseModalEdit} onSubmit={handleSubmit}>
             <Modal.Header closeButton>

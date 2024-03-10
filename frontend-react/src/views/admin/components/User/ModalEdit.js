@@ -1,25 +1,28 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 const ModalEdit = ({ ...props }) => {
     const [showModalEdit, setShowModal] = useState(false);
-    const [customerId, setCustomerId] = useState(props.customer.customerId)
-    const [customerName, setCustomerName] = useState(props.customer.customerName)
-    const handleOpenModal = () => {
+    const [userName, setCustomerName] = useState(props.user.name)
+    const [email, setEmail] = useState(props.user.email)
+    const [password, setPassword] = useState('')
+    const handleOpenModal = useCallback(() => {
         setShowModal(true);
-    };
+    }, []);
 
-    const handleCloseModalEdit = () => {
+    const handleCloseModalEdit = useCallback(() => {
         props.handleCloseModalEdit();
         setShowModal(false);
-    };
+    }, [setShowModal, props]);
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(props.customer.id)
         try {
-            console.log('customer', props.customer.id)
-            await axiosObject.patch(`/api/users/${props.customer.id}`, {
-                name: customerName,
+            console.log('user', props.user.id)
+            await axiosObject.patch(`/api/users/${props.user.id}`, {
+                name: userName,
+                email: email,
+                password: password
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,11 +30,12 @@ const ModalEdit = ({ ...props }) => {
                 }
             })
             props.setRefresh(true);
+            toast.success("User Updated Successfully");
             props.handleCloseModalEdit();
             setShowModal(false);
         } catch (error) {
             setShowModal(false);
-            console.log(error);
+            toast.error("Something went wrong");
         }
     }
 
@@ -45,24 +49,53 @@ const ModalEdit = ({ ...props }) => {
     return (
         <Modal show={showModalEdit} onHide={handleCloseModalEdit} onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-                <Modal.Title>Edit Customer</Modal.Title>
+                <Modal.Title>Edit Admin</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form onSubmit={(() => { })}>
                     <div className="w-full max-w-lg mx-4">
                         <div className="flex flex-wrap -mx-3 mb-6">
                             <label className="form-label" htmlFor="name">
-                                Customer Name
+                                Name
                             </label>
                             <input
-                                name="customerName"
+                                name="userName"
                                 required={true}
-                                value={customerName}
+                                value={userName}
                                 onChange={(e) => setCustomerName(e.target.value)}
                                 type={"text"}
                                 placeholder={""}
                                 className={`form-control`}
                             />
+                        </div>
+                        <div className="flex flex-wrap -mx-3 mb-6 mt-2">
+                            <label className="form-label" htmlFor="email">
+                                Email
+                            </label>
+                            <input
+                                name="email"
+                                required={true}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                type={"email"}
+                                placeholder={""}
+                                className={`form-control`}
+                            />
+                        </div>
+                        <div className="flex flex-wrap -mx-3 mb-6 mt-2">
+                            <label className="form-label" htmlFor="password">
+                                Password
+                            </label>
+                            <input
+                                name="password"
+                                required={true}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                type={"password"}
+                                placeholder={""}
+                                className={`form-control`}
+                            />
+                            <span>* Leave password blank if you don't want to change it</span>
                         </div>
                     </div>
                 </form>

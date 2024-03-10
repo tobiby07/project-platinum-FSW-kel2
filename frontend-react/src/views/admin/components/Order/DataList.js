@@ -1,43 +1,16 @@
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap';
 import { FiEye } from "react-icons/fi";
-import axiosObject from '../../../../services/axiosUrl';
 import { format, parseISO } from "date-fns";
 import numeral from 'numeral';
-import { Button } from 'bootstrap';
 function DataList({ ...props }) {
     const [showModalShow, setShowModalShow] = useState(false);
-    const [showModalEdit, setShowModalEdit] = useState(false);
-    const [orderNameDelete, setOrderNameDelete] = useState(props.order.orderName);
     const handleOpenModalShow = () => {
         setShowModalShow(true);
     };
 
     const handleCloseModalShow = () => {
         setShowModalShow(false);
-    };
-    const handleOpenModalEdit = () => {
-        setShowModalEdit(true);
-    };
-
-    const handleCloseModalEdit = () => {
-        setShowModalEdit(false);
-    };
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        try {
-            await axiosObject.delete(`/api/orders/${props.order.id}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'role': localStorage.getItem('role')
-                }
-            })
-            setOrderNameDelete('')
-            setShowModalShow(false);
-            props.setRefresh(true);
-        } catch (error) {
-            console.log(error)
-        }
     };
 
     return (

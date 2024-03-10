@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 const BtnCreate = ({ setRefresh }) => {
     const [category, setCategory] = useState([]);
     const [brand, setBrand] = useState([]);
@@ -65,11 +66,12 @@ const BtnCreate = ({ setRefresh }) => {
             setPrice('')
             setStock('')
             setProductImage('')
+            toast.success("Product Added Successfully");
             setRefresh(true);
             setShowModal(false);
         } catch (error) {
             setShowModal(false);
-            console.log(error);
+            toast.error("Something went wrong");
         }
     }
     useEffect(() => {

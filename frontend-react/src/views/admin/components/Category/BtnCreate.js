@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 const BtnCreate = ({ setRefresh }) => {
     const [showModal, setShowModal] = useState(false);
     const [categoryName, setCategoryName] = useState('')
@@ -21,9 +22,10 @@ const BtnCreate = ({ setRefresh }) => {
             setCategoryName('')
             setRefresh(true);
             setShowModal(false);
+            toast.success("Category Added Successfully");
         } catch (error) {
             setShowModal(false);
-            console.log(error);
+            toast.error("Something went wrong");
         }
     }
     return (

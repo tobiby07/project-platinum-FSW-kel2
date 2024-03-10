@@ -1,7 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React from 'react'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import 'bootstrap/dist/css/bootstrap.min.css'
 function Navbar() {
     const history = useNavigate();
     const handleLogout = () => {

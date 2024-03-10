@@ -4,6 +4,7 @@ import ModalEdit from './ModalEdit'
 import { Modal } from 'react-bootstrap';
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 function DataList({ ...props }) {
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
@@ -31,11 +32,12 @@ function DataList({ ...props }) {
                     'role': localStorage.getItem('role')
                 }
             })
+            toast.success("Brand Deleted Successfully");
             setBrandNameDelete('')
             setShowModalDelete(false);
             props.setRefresh(true);
         } catch (error) {
-            console.log(error)
+            toast.error("Something went wrong");
         }
     };
     return (

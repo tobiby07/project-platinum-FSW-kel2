@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import axiosObject from '../../../../services/axiosUrl';
+import { toast } from "react-toastify";
 const ModalEdit = ({ ...props }) => {
     const [category, setCategory] = useState([]);
     const [brand, setBrand] = useState([]);
@@ -13,14 +14,14 @@ const ModalEdit = ({ ...props }) => {
     const [price, setPrice] = useState(props.product.price)
     const [stock, setStock] = useState(props.product.stock)
     const [productImage, setProductImage] = useState(props.product.productImage ? props.product.productImage : '')
-    const handleOpenModal = () => {
+    const handleOpenModal = useCallback(() => {
         setShowModal(true);
-    };
+    }, [setShowModal]);
 
-    const handleCloseModalEdit = () => {
+    const handleCloseModalEdit = useCallback(() => {
         props.handleCloseModalEdit();
         setShowModal(false);
-    };
+    }, [setShowModal, props]);
 
     const getCategory = useCallback(async () => {
         try {
@@ -62,10 +63,11 @@ const ModalEdit = ({ ...props }) => {
             })
             props.setRefresh(true);
             props.handleCloseModalEdit();
+            toast.success("Product Updated Successfully");
             setShowModal(false);
         } catch (error) {
             setShowModal(false);
-            console.log(error);
+            toast.error("Something went wrong");
         }
     }
     useEffect(() => {

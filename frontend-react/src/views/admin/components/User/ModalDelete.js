@@ -9,9 +9,9 @@ const ModalDelete = ({ ...props }) => {
             <Modal.Body>
                 <form onSubmit={(() => { })}>
                     <div className="w-full max-w-lg mx-4">
-                        <span>Are you sure want to delete this customer?</span>
+                        <span>Are you sure want to delete this user?</span>
                         <br />
-                        <span className="text-red-500"><b>{props.customer}</b></span>
+                        <span className="text-red-500"><b>{props.user}</b></span>
                     </div>
                 </form>
             </Modal.Body>
