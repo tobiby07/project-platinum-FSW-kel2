@@ -46,11 +46,8 @@ function DataList({ ...props }) {
         <tr key={props.product.id}>
             <th scope="row">{props.index + 1}</th>
             <td>
-<<<<<<< HEAD
                 {props.product.productImage ? <img src={`${url}/images/${props.product.productImage}`} alt="product" width="50px" className='rounded m-2' /> : ''}
-=======
-                {props.product.productImage ? <img src={`${process.env.REACT_APP_API_HOST}/images/${props.product.productImage}`} alt="product" width="50px" className='rounded m-2' /> : ''}
->>>>>>> 69739dcbc54b4b07d592414f902b69944e3fdc18
+
                 {props.product.productName}
             </td>
             <td>{props.product.Brand ? `${props.product.Brand.name}` : 'N/A'}</td>

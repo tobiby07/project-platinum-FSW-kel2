@@ -1,22 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Layout from "../..";
-import axios from "axios";
 import DataList from "../../components/Order/DataList";
 import axiosObject from "../../../../services/axiosUrl";
+import { toast } from "react-toastify";
 function Order() {
   const [order, setOrder] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
-  const [orderNameDelete, setOrderNameDelete] = useState("");
-  const [orderIdDelete, setIdNameDelete] = useState("");
-  const [showModalDelete, setShowModalDelete] = useState(false);
-  const handleOpenModalDelete = () => {
-    setShowModalDelete(true);
-  };
-
-  const handleCloseModalDelete = () => {
-    setShowModalDelete(false);
-  };
   const getOrder = useCallback(async () => {
     try {
       const response = await axiosObject.get("/api/order");
@@ -24,21 +14,9 @@ function Order() {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log("error", error);
+      toast.error("Something went wrong");
     }
   }, []);
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    try {
-      await axiosObject.delete(`/api/order/${orderIdDelete}`);
-      setOrderNameDelete("");
-      setIdNameDelete("");
-      setShowModalDelete(false);
-      setRefresh(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
     getOrder();
     setRefresh(false);
